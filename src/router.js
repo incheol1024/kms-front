@@ -3,12 +3,6 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 
 Vue.use(Router)
-Vue.use(Vuetify);
-Vue.use(VueCodemirror);
-Vue.use(CKEditor);
-Vue.use(VuetifyUploadButton);
-
-const EventBus = new Vue();
 
 export default new Router({
   mode: 'history',
