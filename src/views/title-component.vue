@@ -22,8 +22,7 @@
 </template>
 
 <script>
-    module.exports = {
-        data: () => ({}),
-        methods: {}
-    };
+export default {
+
+}
 </script>
