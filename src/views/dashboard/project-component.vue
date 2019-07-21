@@ -1,11 +1,11 @@
 <template>
     <v-layout column>
-        <chart-component></chart-component>
+        
     </v-layout>
 </template>
 
 <script>
-    module.exports = {}
+    export default {}
 </script>
 
 <style scoped>

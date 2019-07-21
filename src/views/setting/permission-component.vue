@@ -14,7 +14,7 @@
                                             <v-list-tile-sub-title>{{data.aclName}}</v-list-tile-sub-title>
                                         </v-list-tile-content>
                                     </v-list-tile>
-                                    <v-divider></v-divider>
+                                    <v-divider :key="data.aclId"></v-divider>
                                 </template>
                             </v-list>
                         </v-layout>
@@ -73,7 +73,7 @@
 </template>
 
 <script>
-    module.exports = {
+    export default  {
         data: () => ({
             curAcl: copyObject( ACLMODEL),
             listData: [],

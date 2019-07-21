@@ -20,7 +20,7 @@
 </template>
 
 <script>
-    module.exports = {
+    export default {
         props: {
             headers: {
                 default: [],
@@ -102,7 +102,7 @@
             }
         },
         methods: {
-            sync: async function sync(e) {
+            async sync(e) {
                 this.loading = true;
                 let _this = this;
                 try {
@@ -122,11 +122,14 @@
             editItem: function editItem(item) {
                 this.editFunction(item);
             },
-            deleteItem: function deleteItem(item) {
-                let _this = this;
-                this.deleteFunction(item).then(res => {
-                    _this.datas.splice(_this.datas.indexOf(item), 1);
-                }).catch(reason => catchPromise(reason));
+            async deleteItem(item) {
+                try {
+                    let response = await this.deleteFunction(item)
+                     this.datas.splice(this.datas.indexOf(item), 1);
+                }
+                catch(e){
+                    console.error(e)
+                }
             },
             mappingHeader: function mappingHeader(item) {
                 let arr = [];

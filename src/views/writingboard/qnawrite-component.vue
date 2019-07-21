@@ -52,7 +52,7 @@
 </template>
 
 <script>
-    module.exports = {
+    export default {
         props: ['id', 'name'],
         data() {
             return {

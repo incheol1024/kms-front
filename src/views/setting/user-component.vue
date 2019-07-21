@@ -58,7 +58,7 @@
 </template>
 
 <script>
-    module.exports = {
+    export default  {
         data: () => ({
             search: "",
             headers: [

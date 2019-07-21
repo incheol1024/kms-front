@@ -23,7 +23,12 @@
 </template>
 
 <script>
-    module.exports = {
+import card from "@/components/card-component.vue"
+
+    export default {
+        components : {
+            "card-component" : card,
+        },
         inheritAttrs: false,
         props: {
             color: {

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-    module.exports = {
+    export default {
         props: ['name', 'id'],
         data: () => ({
             bottomNav: 0

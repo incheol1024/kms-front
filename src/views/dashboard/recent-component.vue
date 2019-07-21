@@ -6,7 +6,12 @@
 </template>
 
 <script>
-    module.exports = {
+import table from "@/components/table-component.vue"
+
+    export default {
+        components :{
+            "table-component" : table,
+        },
         data: () => ({
             headers: [
                 {text: '번호', value: 'boardId'},

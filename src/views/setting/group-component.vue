@@ -63,7 +63,7 @@
 </template>
 
 <script>
-    module.exports = {
+    export default {
         created: function () {
             axios.get("group").then(value => {
                     this.items = value.data;

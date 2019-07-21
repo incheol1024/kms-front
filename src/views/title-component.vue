@@ -22,7 +22,17 @@
 </template>
 
 <script>
-export default {
+import event from "./dashboard/event-component.vue"
+import overview from "./dashboard/overview-component.vue"
+import project from "./dashboard/project-component.vue"
+import recent from "./dashboard/recent-component.vue"
 
+export default {
+    components :{
+        "event-component" : event,
+        "overview-component": overview,
+        "project-component" : project,
+        "recent-component" : recent
+    }
 }
 </script>

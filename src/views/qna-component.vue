@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    module.exports = {
+    export default {
         name: 'qna',
         props: ['id', 'name'],
         data: () => ({

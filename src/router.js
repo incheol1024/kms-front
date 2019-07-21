@@ -1,5 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import help from "./views/help-component.vue"
+import qna from "./views/qna-component.vue"
+import search from "./views/search-component.vue"
+import setting from "./views/setting-component.vue"
+import site from "./views/sites-component.vue"
+import solution from "./views/solutions-component.vue"
+import title from "./views/title-component.vue";
+import sitesWrite from "./views/site/siteswrite-component.vue"
+import solutionWrite from "./views/solution/solwrite-component.vue"
+import qnaWrite from "./views/writingboard/qnawrite-component.vue"
+import qnaPost from "./views/board/qnapost-component.vue"
+import user from "./views/setting/user-component.vue"
+import group from "./views/setting/group-component.vue"
+import permission from "./views/setting/permission-component.vue"
+
 
 Vue.use(Router)
 
@@ -7,32 +22,32 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    {path: '/title', component: Vue.component('title-component')},
-    {path: '/sites/:id', component: Vue.component('sites-component'), props: true},
-    {path: '/solutions/:id', component: Vue.component('solutions-component'), props: true},
-    {path: '/qna/:name/:id', component: Vue.component('qna-component'), props: true},
-    {path: '/search', component: Vue.component('search-component')},
-    {path: '/help', component: Vue.component('help-component')},
-    {path: '/sites/write/:menuId/:siteId/:projectId/:boardId', component: Vue.component('siteswrite-component'), props: true},
-    {path: '/solutions/write/:menuId/:boardId', component: Vue.component('solwrite-component'), props: true},
+    {path: '/title', component: title},
+    {path: '/sites/:id', component: site, props: true},
+    {path: '/solutions/:id', component: solution, props: true},
+    {path: '/qna/:name/:id', component: qna, props: true},
+    {path: '/search', component: search},
+    {path: '/help', component: help},
+    {path: '/sites/write/:menuId/:siteId/:projectId/:boardId', component: sitesWrite, props: true},
+    {path: '/solutions/write/:menuId/:boardId', component: solutionWrite, props: true},
     {path: '/write/:id', component: Vue.component('write-component'), props: true},
-    {path: '/qna/write/:name/:id', component: Vue.component('qnawrite-component'), props: true},
-    {path: '/qna/answer/:name/:id/:qid', component: Vue.component('qnapost-component'), props: true},
+    {path: '/qna/write/:name/:id', component: qnaWrite, props: true},
+    {path: '/qna/answer/:name/:id/:qid', component: qnaPost, props: true},
     {
         path: '/setting',
-        component: Vue.component('setting-component'),
+        component: setting,
         children: [
             {
                 path: 'user',
-                component: Vue.component('user-component')
+                component: user
             },
             {
                 path: 'group',
-                component: Vue.component('group-component')
+                component: group
             },
             {
                 path: 'permission',
-                component: Vue.component('permission-component')
+                component: permission
             }
         ]
     }

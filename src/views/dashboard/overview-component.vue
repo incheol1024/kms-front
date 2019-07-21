@@ -8,7 +8,7 @@
 
                 <v-divider v-else-if="item.divider" :key="index" :inset="item.inset"></v-divider>
 
-                <v-list-tile v-else :key="item.title" avatar @click="">
+                <v-list-tile v-else :key="item.title" avatar>
                     <v-list-tile-avatar>
                         <img :src="item.avatar">
                     </v-list-tile-avatar>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-    module.exports = {
+    export default{
         data: () => ({
             items: [
                 {header: 'Today Announce'},

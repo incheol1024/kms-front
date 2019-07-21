@@ -30,7 +30,9 @@
 </template>
 
 <script>
-    module.exports = {
+ 
+
+    export default {
         name: 'solution',
         props: ['id'],
     };

@@ -83,14 +83,6 @@
 
 <script>
 // @ is an alias to /src
-import help from "./views/help-component.vue"
-import qna from "./views/qna-component.vue"
-import search from "./views/search-component.vue"
-import setting from "./views/setting-component.vue"
-import site from "./views/sites-component.vue"
-import solution from "./views/solutions-component.vue"
-import title from "./views/title-component.vue";
-
 import api from "./apis/api";
 import router from "./router";
 import error from "./components/error-component.vue"
@@ -98,13 +90,6 @@ import error from "./components/error-component.vue"
 export default {
   component : [
     router,
-    help,
-    qna,
-    search,
-    setting,
-    site,
-    solution,
-    title,
     error
   ],
   data: () => ({
