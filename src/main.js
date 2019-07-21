@@ -16,7 +16,7 @@ Vue.config.productionTip = false
 
 const EventBus = new Vue();
 
-let main = new Vue({
+new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')

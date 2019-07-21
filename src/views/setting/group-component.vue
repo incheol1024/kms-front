@@ -63,7 +63,13 @@
 </template>
 
 <script>
+import tree from "@/components/tree-component.vue"
+import table from "@/components/table-component.vue"
+
     export default {
+        components : {
+            "tree-component" : tree
+        },
         created: function () {
             axios.get("group").then(value => {
                     this.items = value.data;

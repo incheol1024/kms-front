@@ -39,7 +39,7 @@
                                         <v-text-field label="Acl Name" v-model="curAcl.aclName"></v-text-field>
                                         <h6>Has Permission</h6>
                                         <v-chip v-for="value in curAcl.hasPermission" :key="value.value"
-                                                v-if="value.has" close v-model="value.has" @input="deleteRule(value)">
+                                                v-show="value.has" close v-model="value.has" @input="deleteRule(value)">
                                             {{value.name}}
                                         </v-chip>
                                         <h6>Add NewRule</h6>
