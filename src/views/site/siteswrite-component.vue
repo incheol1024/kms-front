@@ -18,7 +18,7 @@
     </v-layout>
 </template>
 <script>
-module.exports =  {
+export default  {
     props: ["menuId","siteId","projectId", "boardId"],
     data: () => ({
         buttonName: "New Save",

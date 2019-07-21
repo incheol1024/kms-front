@@ -8,7 +8,13 @@ export default {
     getSolutionList: (id, page) => axios.get(`${serverUri}/solution/${id}`, {
         params: page
     }),
-    deleteSolution: (boardId) => axios.delete(`/solution/${boardId}`)
-
+    deleteSolution: (boardId) => axios.delete(`/solution/${boardId}`),
+    getGroup: axios.get(`${serverUri}/group`),
+    getGroupChild: (activeId, page) => axios.get(`${serverUri}/group/child/${activeId}`, {
+        params: page
+    }),
+    updateGroup : (group) => axios.post(`${serverUri}/group`, group),
+    addGroup : (group) => axios.put(`${serverUri}/group`, group),
+    deleteGroup : (groupId) => axios.delete(`${serverUri}/group/${groupId}`)
 }
 

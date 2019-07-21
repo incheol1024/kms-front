@@ -30,7 +30,7 @@
 </template>
 
 <script>
-    module.exports = {
+    export default {
         props: ["id"],
         mounted: function () {
             this.getSiteList(this.id);

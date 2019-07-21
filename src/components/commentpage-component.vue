@@ -19,7 +19,7 @@
 
 
 <script>
-    module.exports = {
+    export default {
         props: {
             id: {
                 type: Number,

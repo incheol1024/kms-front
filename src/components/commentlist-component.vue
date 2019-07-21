@@ -56,7 +56,7 @@
 </template>
 
 <script>
-    module.export = {
+    export default {
         props: {
             id: {
                 type: Number,
