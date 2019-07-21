@@ -83,11 +83,30 @@
 
 <script>
 // @ is an alias to /src
+import help from "./views/help-component.vue"
+import qna from "./views/qna-component.vue"
+import search from "./views/search-component.vue"
+import setting from "./views/setting-component.vue"
+import site from "./views/sites-component.vue"
+import solution from "./views/solutions-component.vue"
 import title from "./views/title-component.vue";
+
 import api from "./apis/api";
 import router from "./router";
+import error from "./components/error-component.vue"
 
 export default {
+  component : [
+    router,
+    help,
+    qna,
+    search,
+    setting,
+    site,
+    solution,
+    title,
+    error
+  ],
   data: () => ({
     drawer: null,
     items: [
@@ -118,21 +137,19 @@ export default {
           var response = await api.getMenu(item.type);
           item.children = response.data;
         } catch (e) {
-            console.error(e)
+           error.openError(e)
         }
       });
     router.push("title");
   },
   methods: {
-    logout() {
-      axios
-        .post("logout")
-        .then(function(response) {
+    async logout() {
+      try {
+        var response = await api.logout()
+      }
+      finally{
           window.location.replace("login");
-        })
-        .catch(function(error) {
-          window.location.replace("login");
-        });
+      }
     },
     route(children) {
       if (children.type === "SOL") router.push(`/solutions/${children.id}`);
