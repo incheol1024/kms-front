@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    module.exports = {
+    export default {
         props: ["menuId", "boardId"],
         data: () => ({
             buttonName: "New Save",

@@ -1,6 +1,6 @@
 <template>
   <v-layout column>
-    <v-img src="../assets/help.jpg" class="lighten-2">
+    <v-img src='../assets/help.jpg' class="lighten-2">
       <v-layout class="mt-5" align-center justify-center fill-height column>
         <p class="display-1 text-xs-center">We live in</p>
         <p class="indigo--text display-1 text-xs-center">https://we-are-devworker.slack.com</p>

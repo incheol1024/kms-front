@@ -19,6 +19,7 @@
 
 <script>
 import table from "@/components/table-component.vue";
+import api from "@/apis/api"
 
 export default {
   components: {
@@ -38,24 +39,22 @@ export default {
     search: ""
   }),
   watch: {
-    id: function() {
+    id() {
       this.$refs.table.sync();
     }
   },
   methods: {
-    getSolutionList: function(page) {
-      return axios.get(`solution/${this.id}`, {
-        params: page
-      });
+    async getSolutionList(page) {
+      return await api.getSolutionList(this.id,page)
     },
-    newWrite: function() {
+    newWrite() {
       router.push(`/solutions/write/${this.id}/0`);
     },
-    deleteSolution: function(item) {
+    async deleteSolution(item) {
       if (confirm("삭제하시겠습니까?"))
-        return axios.delete(`/solution/${item.boardId}`);
+        return await api.deleteSolution(item.boardId)
     },
-    clickRow: function(item) {
+    clickRow(item) {
       router.push(`/solutions/write/${this.id}/${item.boardId}`);
     }
   }

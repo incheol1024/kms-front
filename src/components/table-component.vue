@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import * as util from "@/util"
+
 export default {
   props: {
     headers: {
@@ -112,17 +114,16 @@ export default {
   methods: {
     async sync(e) {
       this.loading = true;
-      let _this = this;
       try {
-        let response = await _this.pageReq(jsTojavaPage(_this.pagination));
+        let response = await this.pageReq(util.jsTojavaPage(this.pagination));
         if (response !== undefined) {
-          _this.pageRes(response, _this);
-          _this.totalCount = response.data.totalElements;
+          this.pageRes(response, this);
+          this.totalCount = response.data.totalElements;
         }
-      } catch (reason) {
-        console.error(e);
+      } catch (e) {
+        console.error(e)
       } finally {
-        _this.loading = false;
+        this.loading = false;
       }
     },
     editItem: function editItem(item) {
