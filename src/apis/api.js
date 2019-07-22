@@ -41,8 +41,22 @@ export default {
     updateUser : (user) => axios.post(`${serverUri}/user`, user),
     addAvatar : (formData) => axios.post(`${serverUri}/user/avatar`, formData, {
       headers: { "Content-Type": "multipart/form-data" }
-    })
+    }),
     
+    addQna : (menuId, subject, content) => axios.post(`${serverUri}/qna/register/${menuId}`, {
+      "subject": subject,
+      contents: content
+    }),
+    getQnaList: (id,page) => axios.get(`${serverUri}/qna/${id}`, { params: page }),
+    deleteQna: (boardId) => axios.delete(`${serverUri}/qna/delete/${boardId}`),
 
+    getSiteDeatil : (menuId, siteId, projectId, boardId) => 
+        axios.get(`${serverUri}/site/${menuId}/${siteId}/${projectId}/${boardId}`),
+    updateSiteBoard : (site) => axios.put(`${serverUri}/site/edit`, site),
+    addSiteBoard :  (site) => axios.post(`${serverUri}/site/add`, site),
+
+    getSiteList : (siteId) => axios.get(`${serverUri}/site/${siteId}`),
+    addSite : (site) => axios.put(`${serverUri}/site`, site),
+    deleteSite : (siteId) => axios.delete(`${serverUri}/site/${siteId}`)
 }
 

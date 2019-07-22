@@ -9,12 +9,11 @@ import router from './router'
 
 Vue.use(Vuetify);
 Vue.use(VueCodemirror);
-Vue.use(CKEditor);
 Vue.use(VuetifyUploadButton);
+Vue.use(CKEditor);
 
 Vue.config.productionTip = false
 
-const EventBus = new Vue();
 
 new Vue({
   router,

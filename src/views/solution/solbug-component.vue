@@ -20,6 +20,7 @@
 <script>
 import table from "@/components/table-component.vue";
 import api from "@/apis/api"
+import router from "@/router";
 
 export default {
   components: {

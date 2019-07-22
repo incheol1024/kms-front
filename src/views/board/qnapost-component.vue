@@ -14,7 +14,14 @@
   </v-container>
 </template>
 <script>
+import qna from "@/components/question-component.vue"
+import comment from "@/components/comment-component.vue"
+
 export default {
+  components :{
+    "comment-component" : comment,
+    "question-component" : qna,
+  },
   props: ["id", "name", "qid"]
   /*
         props: {

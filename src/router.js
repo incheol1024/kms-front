@@ -29,6 +29,8 @@ export default new Router({
     {path: '/search', component: search},
     {path: '/help', component: help},
     {path: '/sites/write/:menuId/:siteId/:projectId/:boardId', component: sitesWrite, props: true},
+    {path: '/sites/:id/:siteId', component: Vue.component('project-component'), props: true},
+    {path: '/sites/:id/:siteId/:projectId', component: Vue.component('boardlist-component'), props: true},
     {path: '/solutions/write/:menuId/:boardId', component: solutionWrite, props: true},
     {path: '/write/:id', component: Vue.component('write-component'), props: true},
     {path: '/qna/write/:name/:id', component: qnaWrite, props: true},

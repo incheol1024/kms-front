@@ -1,3 +1,6 @@
+export {UserModel, GroupModel, BASEPAGEMODEL, BASEPAGEREQMODEL, BASEPAGERESMODEL,
+    ACEMODEL, ACLMODEL, PROJECTMODEL, SITEMODEL, BoardDto, BoardDetailDto, SolutionDto, SiteDto};
+
 const UserModel= {"id":"","name":"","type":"USER","groupId":-1,"groupName":"","password":""};
 const GroupModel = {"id":0,"name":"Root","parentId":-1,"children":[]};
 const BASEPAGERESMODEL ={"list":[""],"total":30};
@@ -9,6 +12,7 @@ const PROJECTMODEL = {
     "siteId": 0,
     "projectId": 0,
     "grade": 0,
+    "step" : 0,
     "name": "",
     "startDate": "",
     "endDate": "",

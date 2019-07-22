@@ -84,6 +84,7 @@
 import * as util from "@/util";
 import api from "@/apis/api";
 import table from "@/components/table-component.vue";
+import {ACLMODEL,ACEMODEL} from "@/model"
 
 export default {
   components: {

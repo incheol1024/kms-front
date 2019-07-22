@@ -44,10 +44,14 @@
 
 <script>
 import codeMirror from "@/components/codemirror-component.vue";
+import write from "@/components/write-component.vue"
+import api from "@/apis/api"
+import router from "@/router"
 
 export default {
   components: {
-    "codemirror-component": codeMirror
+    "codemirror-component": codeMirror,
+    "write-component" : write
   },
   props: ["id", "name"],
   data() {
@@ -72,7 +76,7 @@ export default {
     })(this);
   },
   methods: {
-    registerQuestion: function() {
+    async registerQuestion() {
       if (!this.validateQna()) {
         return;
       }
@@ -80,11 +84,7 @@ export default {
       this.uploading = true;
       let menuName = this.select;
       let menuId = this.menuAndId[this.select];
-      axios
-        .post("/qna/register/" + menuId, {
-          subject: this.subject,
-          contents: this.$refs.questionEditor.getText()
-        })
+      await api.addQna(menuId,this.subject,this.$refs.questionEditor.getText())
         .then(response => {
           router.push(
             "/qna/answer/" +

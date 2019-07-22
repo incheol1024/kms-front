@@ -80,6 +80,7 @@
 import table from "@/components/table-component.vue"
 import * as util from "@/util"
 import api from "@/apis/api"
+import {UserModel} from "@/model"
 
 export default {
   components : {

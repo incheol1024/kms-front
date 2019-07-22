@@ -23,15 +23,18 @@
 
 <script>
 import * as util from "@/util";
+import {SolutionDto} from "@/model"
 import api from "@/apis/api";
+import router from "@/router"
 import table from "@/components/table-component.vue";
 import comment from "@/components/comment-component.vue";
-import router from "@/router"
+import write from "@/components/write-component.vue"
 
 export default {
   components: {
     "table-component": table,
-    "comment-component": comment
+    "comment-component": comment,
+    "write-component" : write
   },
   props: ["menuId", "boardId"],
   data: () => ({
@@ -47,7 +50,7 @@ export default {
     } else {
       this.buttonName = "Edit";
       this.showComment = true;
-      let response = api.getSolutionDetail(this.menuId, this.boardId);
+      let response = await api.getSolutionDetail(this.menuId, this.boardId);
       this.curSolution.boardDetailDto = response.data;
       this.$refs.editor.setText(this.curSolution.boardDetailDto.contents);
       this.curSolution.boardId = this.boardId;

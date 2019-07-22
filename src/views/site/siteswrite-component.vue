@@ -18,13 +18,23 @@
     </v-layout>
 </template>
 <script>
+import write from "@/components/write-component.vue"
+import comment from "@/components/comment-component.vue"
+import {SiteDto} from "@/model" 
+import * as util from "@/util"
+import api from "@/apis/api"
+
 export default  {
+    components : {
+        "write-component" : write,
+        "comment-component" : comment
+    },
     props: ["menuId","siteId","projectId", "boardId"],
     data: () => ({
         buttonName: "New Save",
         loading: false,
         showComment : false,
-        curSite: copyObject(SiteDto)
+        curSite: util.copyObject(SiteDto)
     }),
     mounted() {
          if (this.boardId === "0") {
@@ -33,10 +43,11 @@ export default  {
         } else {
             this.buttonName = "Edit";
             this.showComment = true;
-           axios.get(`site/${this.menuId}/${this.siteId}/${this.projectId}/${this.boardId}`).then(value => {
+            api.getSiteDeatil(this.menuId,this.siteId,this.projectId,this.boardId)
+            .then(value => {
                 this.curSite.boardDetailDto = value.data;
                 this.$refs.editor.setText(this.curSite.boardDetailDto.contents);
-            }).catch(error => catchPromise(error));
+            }).catch(error => console.error(error));
             this.curSite.boardId = this.boardId;
         }
     },
@@ -50,11 +61,11 @@ export default  {
           let fetch ;
 
           if (this.boardId !== "0")
-              fetch = axios.put("/site/edit", this.curSite);
+              fetch = api.updateSiteBoard(this.curSite)
           else
-              fetch = axios.post("/site/add", this.curSite);
+              fetch = api.addSiteBoard(this.curSite)
           fetch.then(response => {
-          }).catch(error => catchPromise(error))
+          }).catch(error => console.error(error))
               .finally(() => {
                   this.loading = false;
                   this.$router.go(-1);
