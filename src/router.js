@@ -14,7 +14,8 @@ import qnaPost from "./views/board/qnapost-component.vue"
 import user from "./views/setting/user-component.vue"
 import group from "./views/setting/group-component.vue"
 import permission from "./views/setting/permission-component.vue"
-
+import project from "./views/site/project-component.vue"
+import boardList from "./views/site/boardlist-component.vue"
 
 Vue.use(Router)
 
@@ -29,10 +30,11 @@ export default new Router({
     {path: '/search', component: search},
     {path: '/help', component: help},
     {path: '/sites/write/:menuId/:siteId/:projectId/:boardId', component: sitesWrite, props: true},
-    {path: '/sites/:id/:siteId', component: Vue.component('project-component'), props: true},
-    {path: '/sites/:id/:siteId/:projectId', component: Vue.component('boardlist-component'), props: true},
+    {path: '/sites/:id/:siteId', component: project, props: true},
+    {path: '/sites/:id/:siteId/:projectId', component: boardList, props: true},
     {path: '/solutions/write/:menuId/:boardId', component: solutionWrite, props: true},
-    {path: '/write/:id', component: Vue.component('write-component'), props: true},
+    //누구냐 이거
+    //{path: '/write/:id', component: Vue.component('write-component'), props: true},
     {path: '/qna/write/:name/:id', component: qnaWrite, props: true},
     {path: '/qna/answer/:name/:id/:qid', component: qnaPost, props: true},
     {

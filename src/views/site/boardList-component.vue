@@ -1,4 +1,4 @@
-<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<template>
   <v-layout>
     <v-flex>
       <v-window v-model="window" class="elevation-1" vertical>
@@ -24,7 +24,9 @@
 </template>
 
 <script>
-import table from "@/componsets/table-component.vue";
+import table from "@/components/table-component.vue";
+import { PROJECTMODEL } from "@/model";
+import * as util from "@/util";
 
 export default {
   components: {
@@ -39,7 +41,7 @@ export default {
   },
   data: () => ({
     window: 0,
-    curProject: copyObject(PROJECTMODEL),
+    curProject: util.copyObject(PROJECTMODEL),
     dialog: false,
     startDialog: false,
     endDialog: false,

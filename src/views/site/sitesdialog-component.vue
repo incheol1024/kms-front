@@ -70,6 +70,8 @@
 </template>
 
 <script>
+import * as util from "@/util"
+
 export default {
   props: ["id"],
   mounted: function() {},
@@ -83,7 +85,7 @@ export default {
     // }
   },
   data: () => ({
-    curProject: copyObject(PROJECTMODEL),
+    curProject: util.copyObject(PROJECTMODEL),
     dialog: false,
     startDialog: false,
     endDialog: false
