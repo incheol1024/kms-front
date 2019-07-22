@@ -81,96 +81,81 @@
 </template>
 
 <script>
+import * as util from "@/util";
+import api from "@/apis/api";
+import table from "@/components/table-component.vue";
+
 export default {
+  components: {
+    "table-component": table
+  },
   data: () => ({
-    curAcl: copyObject(ACLMODEL),
+    curAcl: util.copyObject(ACLMODEL),
     listData: [],
     updateMode: false,
     aclText: "Make",
 
-    curAce: copyObject(ACEMODEL),
+    curAce: util.copyObject(ACEMODEL),
     aceText: "",
     headers: [
       { text: "aceId", value: "aceId" },
       { text: "action", value: "action", sortable: false }
     ]
   }),
-  created: function created() {
-    let _this = this;
-    axios
-      .get("acl", getJavaMaxPage())
-      .then(res => {
-        _this.listData = res.data.content;
-      })
-      .catch(reason => catchPromise(reason));
+  async created() {
+    let response = await api.getAclList(util.getJavaMaxPage());
+    this.listData = response.data.content;
   },
   computed: {
-    addPermission: function() {
+    addPermission() {
       return this.curAcl.hasPermission.filter(permission => !permission.has);
     }
   },
   methods: {
-    confirmAcl: function confirmAcl() {
-      let _this = this;
-      if (this.updateMode)
-        axios.post("acl", _this.curAcl).catch(reason => openError(reason));
-      else
-        axios
-          .put("acl", _this.curAcl)
-          .then(res => {
-            _this.listData.push(_this.curAcl);
-          })
-          .catch(reason => openError(reason));
+    async confirmAcl() {
+      if (this.updateMode) await api.updateAcl(this.curAcl);
+      else {
+        let reponse = await api.addAcl(this.curAcl);
+        this.listData.push = this.curAcl;
+      }
       this.updateMode = false;
-      this.curAcl = copyObject(ACLMODEL);
+      this.curAcl = util.copyObject(ACLMODEL);
     },
-    deleteAcl: function deleteAcl() {
-      let _this = this;
-      axios
-        .delete("acl/" + _this.curAcl.aclId)
-        .then(res => {
-          _this.listData.splice(_this.listData.indexOf(_this.curAcl), 1);
-        })
-        .catch(reason => openError(reason));
+    async deleteAcl() {
+      await api.deleteAcl(this.curAcl.aclId);
+      this.listData.splice(this.listData.indexOf(this.curAcl), 1);
       this.newAcl();
     },
-    newAcl: function newAcl() {
+    newAcl() {
       this.updateMode = false;
-      this.curAcl = copyObject(ACLMODEL);
+      this.curAcl = util.copyObject(ACLMODEL);
       this.aclText = "Make";
     },
-    setItem: function setItem(item) {
+    setItem(item) {
       this.curAcl = item;
       this.aclText = "Update";
       this.updateMode = true;
       this.$refs.table.sync();
     },
-    addRule: function addRule(item) {
+    addRule(item) {
       this.curAcl.hasPermission.filter(it => it.value === item)[0].has = true;
     },
-    deleteRule: function deleteRule(item) {
+    deleteRule(item) {
       item.has = false;
     },
-    aceReq: function aceReq(page) {
+    async aceReq(page) {
       if (this.curAcl.aclId !== "") {
-        return axios.get("ace/" + this.curAcl.aclId, {
-          params: page
-        });
+        return await api.getAceList(this.curAcl.aclId, page);
       }
     },
-    deleteAce: function deleteAce(item) {
-      return axios.delete("ace/" + item.aclId + "/" + item.aceId);
+    async deleteAce(item) {
+      return await api.deleteAce(item.aclId, item.aceId);
     },
-    addAce: function addAce() {
+    async addAce() {
       if (this.curAcl.aclId !== "") {
-        _this = this;
-        let ace = { aclId: _this.curAcl.aclId, aceId: _this.aceText };
-        axios
-          .put("ace", ace)
-          .then(res => {
-            _this.$refs.table.addFunction(ace);
-          })
-          .catch(reason => openError(reason));
+        let ace = { aclId: this.curAcl.aclId, aceId: this.aceText };
+        await api.addAce(ace);
+        this.$refs.table.addFunction(ace);
       }
     }
   }

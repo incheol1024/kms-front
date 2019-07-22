@@ -77,7 +77,14 @@
 </template>
 
 <script>
+import table from "@/components/table-component.vue"
+import * as util from "@/util"
+import api from "@/apis/api"
+
 export default {
+  components : {
+    "table-component" : table
+  },
   data: () => ({
     search: "",
     headers: [
@@ -87,7 +94,7 @@ export default {
       { text: "groupName", value: "groupName", sortable: false },
       { text: "actions", value: "actions", sortable: false }
     ],
-    curItem: copyObject(UserModel),
+    curItem: util.copyObject(UserModel),
     stage: 3,
     updateMode: false,
     hideInput: false,
@@ -98,19 +105,12 @@ export default {
     curFile: null
   }),
   async created() {
-    let _this = this;
-    axios
-      .get("group")
-      .then(value => {
-        _this.groupItem.push(value.data);
-      })
-      .catch(reason => catchPromise(reason));
+    let response = await api.getGroup()
+    this.groupItem = response.data
   },
   methods: {
-    page: function(page) {
-      return axios.get("user", {
-        params: page
-      });
+    async page(page) {
+      return await api.getUserList(page)
     },
     selectedTreeId() {
       if (!this.active.length) return undefined;
@@ -118,7 +118,7 @@ export default {
     },
     addItem() {
       this.updateMode = false;
-      this.curItem = copyObject(UserModel);
+      this.curItem = util.copyObject(UserModel);
       this.stage = 1;
       this.hideInput = true;
     },
@@ -128,40 +128,29 @@ export default {
       this.stage = 1;
       this.hideInput = true;
     },
-    deleteItem(item) {
+    async deleteItem(item) {
       if (confirm("Are you sure you want to delete this item?")) {
-        return axios.delete("user/" + item.id);
+        return await api.deleteUser(item.id)
       }
     },
-    send() {
-      let _this = this;
+    async send() {
       this.curItem.groupId = this.selectedTreeId();
-      let promise = axios.put("user", _this.curItem);
-      if (this.updateMode) promise = axios.post("user", _this.curItem);
-      promise
-        .then(value => {
-          if (!_this.updateMode) _this.$refs.table.addFunction(_this.curItem);
-        })
-        .then(value => {
-          //axios add file
-        })
-        .catch(reason => catchPromise(reason));
+      if(this.updateMode){
+        await api.updateUser(this.curItem)
+      }
+      else{
+        await api.addUser(this.curItem)
+        this.$refs.table.addFunction(this.curItem);
+      }
       this.stage = 3;
       this.hideInput = false;
     },
-    update(file) {
-      console.log("aaa");
+    async update(file) {
       this.curFile = file;
       let formData = new FormData();
       formData.append("multiPartFile", this.curFile);
-      return axios
-        .post("user/avatar", formData, {
-          headers: { "Content-Type": "multipart/form-data" }
-        })
-        .then(response => {
-          return response;
-        })
-        .catch(err => catchPromise(err));
+      let response = await api.addAvatar(formData)
+      return response.data
     }
   }
 };
