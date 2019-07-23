@@ -54,7 +54,14 @@
 </template>
 
 <script>
+import write from "@/components/write-component.vue"
+import code from "@/components/codemirror-component.vue"
+
 export default {
+  components : {
+    "write-component" : write,
+    "codemirror-component" : code
+  },
   props: {
     id: {
       type: Number,

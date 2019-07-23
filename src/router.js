@@ -15,7 +15,7 @@ import user from "./views/setting/user-component.vue"
 import group from "./views/setting/group-component.vue"
 import permission from "./views/setting/permission-component.vue"
 import project from "./views/site/project-component.vue"
-import boardList from "./views/site/boardlist-component.vue"
+import boardList from "./views/site/boardList-component.vue"
 
 Vue.use(Router)
 

@@ -27,6 +27,8 @@
 import table from "@/components/table-component.vue";
 import { PROJECTMODEL } from "@/model";
 import * as util from "@/util";
+import router from "@/router"
+import api from "@/apis/api"
 
 export default {
   components: {
@@ -67,9 +69,7 @@ export default {
       console.log("dd");
       let _this = this;
       if (this.projectId === 0) return;
-      return axios.get(`site/${_this.id}/${_this.siteId}/${_this.projectId}`, {
-        params: page
-      });
+      return api.getSiteProjectBoardList(_this.id,_this.siteId,_this.projectId,page)
     },
     addBoard: function() {
       let _this = this;
@@ -86,9 +86,7 @@ export default {
     deleteBoard: function(item) {
       let _this = this;
       if (confirm("삭제하시겠습니까?"))
-        return axios.delete(
-          `site/${_this.curSite.siteId}/${_this.curProject.projectId}/${item.boardId}`
-        );
+        return api.deleteSiteProjectBoard(_this.curSite.siteId,_this.curProject.projectId,item.boardId)
     }
   }
 };

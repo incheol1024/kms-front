@@ -94,6 +94,7 @@ import table from "@/components/table-component.vue";
 import * as util from "@/util"
 import {PROJECTMODEL} from "@/model"
 import router from "@/router"
+import api from "@/apis/api"
 
 export default {
   components: {
@@ -125,16 +126,13 @@ export default {
     getProjects: function(page) {
       if (this.siteId === 0) return;
       //  _this.$refs.table.clear();//중복으로 데이터 첨가 되는거 클리어 처리 .
-      return axios.get(`site/${this.id}/${this.siteId}`, {
-        params: page
-      });
+      return api.getSiteProjectList(this.id, this.siteId, page)
     },
     addProject: function() {
       let _this = this;
       _this.curProject.siteId = _this.siteId;
       _this.curProject.projectId = 0;
-      axios
-        .put(`site/${_this.siteId}`, _this.curProject)
+      api.addSiteProject(_this.siteId,_this.curProject)
         .then(res => {
           _this.curProject.projectId = res.data;
           _this.$refs.table.addFunction(_this.curProject);
@@ -144,7 +142,7 @@ export default {
     },
     deleteProject: function(item) {
       if (confirm("삭제하시겠습니까?"))
-        return axios.delete(`site/${item.siteId}/${item.projectId}`);
+        return api.deleteSiteProject(item.siteId, item.projectId)
     },
     getBoard: function(item) {
       let _this = this;
