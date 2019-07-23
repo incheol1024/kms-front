@@ -41,6 +41,7 @@ export default  {
             this.buttonName = "New Save";
             this.showComment = false;
         } else {
+            console.log('ddd');
             this.buttonName = "Edit";
             this.showComment = true;
             api.getSiteDeatil(this.menuId,this.siteId,this.projectId,this.boardId)
