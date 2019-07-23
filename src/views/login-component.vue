@@ -40,7 +40,7 @@ export default {
       } catch (e) {
         alert(
           "로그인 실패!!! 관리자에게 문의하세요." +
-            JSON.stringify(error.response.data)
+            JSON.stringify(e.response.data)
         );
       } finally {
         this.loading = false;
