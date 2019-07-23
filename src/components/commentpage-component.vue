@@ -74,7 +74,7 @@ export default {
           }
         })
         .catch(error => {
-          catchPromise(error);
+            console.error(error)
         });
     },
     emitComment: function() {

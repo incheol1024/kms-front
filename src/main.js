@@ -13,18 +13,15 @@ Vue.use(VueCodemirror);
 Vue.use(VuetifyUploadButton);
 Vue.use(CKEditor);
 
-Vue.config.productionTip = false
-
-
 new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
 
 Vue.config.errorHandler = function (err, vm, info) {
-  console.log(err);
+  console.error(err);
 };
 
 Vue.config.warnHandler = function (err, vm, info) {
-  console.log(err);
+  console.warn(err);
 };

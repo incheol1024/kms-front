@@ -153,7 +153,7 @@ export default {
           this.comments.push(response.data);
         })
         .catch(error => {
-          catchPromise(error);
+           console.error(error);
         });
     },
     deleteComment: function(cmtId, index) {
@@ -168,7 +168,7 @@ export default {
             }
           })
           .catch(error => {
-            catchPromise(error);
+           console.error(error);
           });
       } else {
         // Do nothing!
@@ -182,7 +182,7 @@ export default {
           console.log(response.data);
         })
         .catch(error => {
-          catchPromise(error);
+            console.error(error)
         });
     },
     fileDownload: function(doc) {

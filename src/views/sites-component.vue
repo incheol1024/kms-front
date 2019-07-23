@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import sitesList from "@/views/site/sitesList-component.vue";
+import sitesList from "@/views/site/siteslist-component.vue";
 
 export default {
   components: {

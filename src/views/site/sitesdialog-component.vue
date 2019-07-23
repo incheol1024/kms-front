@@ -101,7 +101,7 @@ export default {
           _this.curProject.projectId = res.data;
           _this.$refs.table.addFunction(_this.curProject);
         })
-        .catch(reason => catchPromise(reason));
+        .catch(reason => console.error(reason));
       this.dialog = false;
     }
   }
