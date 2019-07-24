@@ -38,10 +38,7 @@ export default {
         let response = await api.login(bodyFormData);
         router.push("/title");
       } catch (e) {
-        alert(
-          "로그인 실패!!! 관리자에게 문의하세요." +
-            JSON.stringify(e.response.data)
-        );
+        alert(`로그인 실패!!! 관리자에게 문의하세요.${JSON.stringify(e)}`);
       } finally {
         this.loading = false;
       }
