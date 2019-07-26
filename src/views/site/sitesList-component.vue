@@ -1,4 +1,4 @@
-<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<template>
   <v-window v-model="window" class="elevation-1" vertical>
     <v-window-item>
       <h3>Site List</h3>
@@ -10,7 +10,7 @@
             </v-list-tile-content>
             <v-list-tile-action>
               <v-btn icon ripple>
-                <v-icon color="grey lighten-1" @click="deleteSite(site)">close</v-icon>
+                <v-icon color="grey lighten-1" @click.stop="deleteSite(site)">close</v-icon>
               </v-btn>
             </v-list-tile-action>
           </v-list-tile>
@@ -32,8 +32,7 @@ import api from "@/apis/api"
 export default {
   props: ["id"],
   mounted: function() {
-    console.log("siteList call");
-    this.getSiteList(this.id);
+        this.getSiteList(this.id);
   },
   watch: {
     id: function(id) {
@@ -62,10 +61,9 @@ export default {
         .catch(reason => console.error(reason));
     },
     setSite: function(site) {
-      console.log(site);
       let _this = this;
       this.curSite = site;
-      this.window = 1;
+     // this.window = 1;
       router.push(`/sites/${this.id}/${this.curSite.siteId}`);
     },
     addSite: function() {

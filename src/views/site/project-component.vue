@@ -1,9 +1,7 @@
 <template>
-  <v-layout>
-    <v-layout>
-      <v-flex>
-        <v-window v-model="window" class="elevation-1" vertical>
-          <v-window-item>
+  <v-layout >
+    <v-layout >
+      <v-flex xs12 >
             <h3>Site :</h3>
             <table-component
               ref="table"
@@ -14,11 +12,8 @@
               :click-row="getBoard"
             ></table-component>
             <v-btn color="primary" @click="dialog = true">Add Project</v-btn>
-          </v-window-item>
-        </v-window>
       </v-flex>
-    </v-layout>
-    <v-layout>
+          <v-layout>
       <v-dialog v-model="dialog" width="500" persistent="true">
         <v-card>
           <v-card-title class="headline primary lighten-2" primary-title>ADD NEW PROJECT</v-card-title>
@@ -85,7 +80,9 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+    </v-layout> 
     </v-layout>
+ 
   </v-layout>
 </template>
 
@@ -102,9 +99,7 @@ export default {
   },
   props: ["id", "siteId"],
   watch: {
-    id: function(id) {
-      this.$refs.table.sync();
-    }
+   
   },
   data: () => ({
     window: 0,
@@ -125,8 +120,7 @@ export default {
   methods: {
     getProjects: function(page) {
       if (this.siteId === 0) return;
-      //  _this.$refs.table.clear();//중복으로 데이터 첨가 되는거 클리어 처리 .
-      return api.getSiteProjectList(this.id, this.siteId, page)
+        return api.getSiteProjectList(this.id, this.siteId, page)
     },
     addProject: function() {
       let _this = this;
@@ -139,10 +133,12 @@ export default {
         })
         .catch(reason => console.error(reason));
       this.dialog = false;
+       this.$refs.table.sync();
     },
     deleteProject: function(item) {
       if (confirm("삭제하시겠습니까?"))
         return api.deleteSiteProject(item.siteId, item.projectId)
+        this.$refs.table.sync();
     },
     getBoard: function(item) {
       let _this = this;
@@ -150,8 +146,7 @@ export default {
       _this.curProject.projectId = item.projectId;
 
       router.push(`/sites/${this.id}/${this.siteId}/${item.projectId}`);
-      // this.window = 2;
-      //this.$refs.table2.sync();
+    
     }
   }
 };
