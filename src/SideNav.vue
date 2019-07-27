@@ -50,7 +50,8 @@
 
 <script>
 import router from "@/router";
-import api from "@/apis/api"
+import api from "@/apis/api";
+import {SideNavBus} from "@/bus"
 
 export default {
   data: () => ({
@@ -72,6 +73,9 @@ export default {
       }
     ]
   }),
+  created() {
+    SideNavBus.$on("login", this.setMenuItem);
+  },
   methods: {
     route(children) {
       if (children.type === "SOL") router.push(`/solutions/${children.id}`);
@@ -84,19 +88,19 @@ export default {
     },
     help() {
       router.push("/help");
+    },
+    setMenuItem() {
+      this.items
+        .filter(item => item.children.length < 1)
+        .forEach(async item => {
+          try {
+            var response = await api.getMenu(item.type);
+            item.children = response.data;
+          } catch (e) {
+            console.error(e);
+          }
+        });
     }
-  },
-  created() {
-    this.items
-      .filter(item => item.children.length < 1)
-      .forEach(async item => {
-        try {
-          var response = await api.getMenu(item.type);
-          item.children = response.data;
-        } catch (e) {
-          console.error(e);
-        }
-      });
   }
 };
 </script>

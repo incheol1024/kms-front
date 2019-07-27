@@ -6,6 +6,7 @@
 
 <script>
 import treeNode from "@/components/treenode-component.vue";
+import {EventBus} from "@/bus.js"
 
 export default {
   components: {

@@ -1,7 +1,11 @@
 import axios from "axios";
 
 axios.defaults.baseURL = 'http://localhost:8089';
-//axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+axios.defaults.withCredentials = true;
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = 'http://localhost:8080';
+axios.defaults.headers.common['Access-Control-Allow-Methods'] = 'POST, PUT, GET, DELETE';
+axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type';
+
 
 export default {
     getMenu: (type) => axios.get(`menu/${type}`),

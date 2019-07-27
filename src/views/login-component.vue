@@ -21,6 +21,7 @@
 <script>
 import api from "@/apis/api";
 import router from "@/router";
+import {SideNavBus} from "@/bus"
 
 export default {
   data: () => ({
@@ -37,8 +38,9 @@ export default {
       try {
         let response = await api.login(bodyFormData);
         router.push("/title");
+        SideNavBus.$emit("login");
       } catch (e) {
-        alert(`로그인 실패!!! 관리자에게 문의하세요.${JSON.stringify(e)}`);
+        alert(`로그인 실패!!! 관리자에게 문의하세요.${e}`);
       } finally {
         this.loading = false;
       }

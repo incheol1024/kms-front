@@ -13,6 +13,7 @@ Vue.use(VueCodemirror);
 Vue.use(VuetifyUploadButton);
 Vue.use(CKEditor);
 
+
 new Vue({
   router,
   render: h => h(App)

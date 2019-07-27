@@ -47,9 +47,9 @@ export default {
   methods: {
     async logout() {
       try {
-        var response = await api.logout();
+        var response = await api.logout();       
       } finally {
-        window.location.replace("login");
+        router.push("/login")
       }
     },
     submit() {

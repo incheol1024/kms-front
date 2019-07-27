@@ -83,7 +83,7 @@ export default {
   async created() {
     try {
       let reponse = await api.getGroup();
-      this.items = value.data;
+      this.items = reponse.data;
       this.$refs.tree.recurCache(this.items);
       this.$refs.subtree.recurCache(this.items);
     } catch (e) {

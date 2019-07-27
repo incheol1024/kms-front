@@ -33,6 +33,7 @@
 
 <script>
 import * as util from "@/util"
+import {EventBus} from "@/bus.js"
 
 export default {
   props: {
@@ -67,7 +68,7 @@ export default {
     },
     addFunction: {
       default(item) {
-        this.datas.push(copyObject(item));
+        this.datas.push(util.copyObject(item));
       },
       type: Function
     },

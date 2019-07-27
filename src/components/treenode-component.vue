@@ -9,7 +9,14 @@
 </template>
 
 <script>
+import treeNode from "@/components/treenode-component.vue";
+import {EventBus} from "@/bus.js"
+
 export default {
+  name: "treenode-component",
+  components: {
+    "treenode-component": treeNode
+  },
   props: {
     items: {},
     parentnode: {},
