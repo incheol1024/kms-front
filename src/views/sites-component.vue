@@ -10,19 +10,19 @@
       </v-item>
     </v-item-group> -->
     <v-flex>
-      <!-- <siteslist-component :id="id"></siteslist-component> -->
+      <siteslist-component :id="id"></siteslist-component> 
     </v-flex>
   
   </v-layout>
 </template>
 
 <script>
-//import siteslist from "./site/siteslist-component.vue";
+import siteslist from "./site/siteslist-component.vue";
 
 export default {
-  // components: {
-  //   "siteslist-component": siteslist
-  // },
+   components: {
+     "siteslist-component": siteslist
+   },
   props: ["id"]
   
 };
