@@ -258,7 +258,8 @@ export default {
           fileCount: this.fileCount
         })
         .then(response => {
-          this.emitComment(response.data);
+          console.log("emit upload-comment");
+          this.$emit('upload-comment','');
           this.uploading = false;
         })
         .catch(function(error) {

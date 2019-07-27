@@ -125,7 +125,7 @@ export default {
       return { name: this.name };
     },
     getLanguageLogoName() {
-      return require("@/assets/" +this.name + ".png")
+      return require("@/assets/" +this.name + ".png");
     }
   }
 };

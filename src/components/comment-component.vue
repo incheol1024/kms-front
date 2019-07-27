@@ -7,31 +7,26 @@
         :qid="Number(qid)"
         :is-required-code-button="isRequiredCodeButton"
         :is-required-file-button="isRequiredFileButton"
+        @upload-comment="requestFirstPage"
       ></commentwrite-component>
     </v-flex>
 
     <v-flex xs12>
-      <commentlist-component :id="Number(id)" :name="name" :qid="Number(qid)"></commentlist-component>
+      <commentlist-component ref="commentList" :id="Number(id)" :name="name" :qid="Number(qid)"></commentlist-component>
     </v-flex>
-
-    <template v-show="seenCommentpage">
-      <v-flex xs12>
-        <commentpage-component :id="Number(id)" :name="name" :qid="Number(qid)"></commentpage-component>
-      </v-flex>
-    </template>
   </v-layout>
 </template>
 
 <script>
 import commentwrite from "@/views/writingboard/commentwrite-component.vue";
-import commentlist from "@/components/commentlist-component.vue"
+import commentlist from "@/components/commentlist-component.vue";
 import commentpage from "@/components/commentpage-component.vue";
 
 export default {
   components: {
     "commentwrite-component": commentwrite,
     "commentpage-component": commentpage,
-    "commentlist-component" : commentlist
+    "commentlist-component": commentlist
   },
   props: {
     id: {
@@ -54,7 +49,24 @@ export default {
       type: Boolean,
       default: false
     }
-  }
+  },
+  data() {
+    return {
+      pageNumber: 1
+    };
+  },
+  methods: {
+    requestFirstPage: function() {
+      console.log("comment-component requestFirstPage");
+      this.$refs.commentList.requestFirstPage();
+    }
+  },
+  watch: {
+    pageNumber: function() {
+      console.log("comment-component watch pageNumber?" + this.pageNumber);
+    }
+  },
+  computed: {}
 };
 </script>
 
