@@ -9,6 +9,7 @@ import solution from "./views/solutions-component.vue"
 import title from "./views/title-component.vue";
 import sitesWrite from "./views/site/siteswrite-component.vue"
 import solutionWrite from "./views/solution/solwrite-component.vue"
+import solutionbugWrite from "./views/solution/solbugwrite-component.vue"
 import qnaWrite from "./views/writingboard/qnawrite-component.vue"
 import qnaPost from "./views/board/qnapost-component.vue"
 import user from "./views/setting/user-component.vue"
@@ -35,6 +36,7 @@ export default new Router({
         { path: '/sites/:id/:siteId', component: project, props: true },
         { path: '/sites/:id/:siteId/:projectId', component: boardList, props: true },
         { path: '/solutions/write/:menuId/:boardId', component: solutionWrite, props: true },
+        { path: '/solutions/write/bug/:menuId/:boardId', component: solutionbugWrite, props: true },
         //누구냐 이거
         //{path: '/write/:id', component: Vue.component('write-component'), props: true},
         { path: '/qna/write/:name/:id', component: qnaWrite, props: true },

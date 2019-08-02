@@ -15,6 +15,9 @@ export default {
     getSolutionList: (id, page) => axios.get(`solution/${id}`, {
         params: page
     }),
+    getSolutionBugList: (id, page) => axios.get(`solution/bug/${id}`, {
+        params: page
+    }),
     deleteSolution: (boardId) => axios.delete(`solution/${boardId}`),
     getSolutionDetail: (menuId, boardId) => axios.get(`solution/${this.menuId}/${this.boardId}`),
     addSolution: (solution) => axios.post(`solution`, solution),
