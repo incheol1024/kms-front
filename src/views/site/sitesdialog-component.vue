@@ -1,6 +1,6 @@
-<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<template>
   <v-layout>
-    <v-dialog v-model="dialog" width="500" persistent="true">
+    <v-dialog v-model="dialog" width="500" persistent>
       <v-card>
         <v-card-title class="headline primary lighten-2" primary-title>ADD NEW PROJECT</v-card-title>
         <v-card-text>
@@ -61,7 +61,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog =false">Close</v-btn>
+          <v-btn color="blue darken-1" flat @click="closeModal">Close</v-btn>
           <v-btn color="blue darken-1" flat @click="addProject">Save</v-btn>
         </v-card-actions>
       </v-card>
@@ -71,19 +71,33 @@
 
 <script>
 import * as util from "@/util"
+import {PROJECTMODEL} from "@/model"
+import {GRADE} from "@/model"
+import {STEP} from "@/model"
+import api from "@/apis/api"
 
 export default {
-  props: ["id"],
-  mounted: function() {},
-  watch: {
-    // id: function (id) {
-    //     this.window=0;
-    //     this.getSiteList(id);
-    // },
-    // 'curSite.siteId': function () {
-    //    this.$refs.table.sync();
-    // }
+  props: {
+     id: {
+                type: Number,
+                required: true
+          },
+      siteId:{
+                type: Number,
+                required: true
+          },
+      projectId:{
+                type: Number,
+          },
+      dialog : {
+                type: Boolean,
+                default: false
+      }   
   },
+  mounted: function() {
+    
+  },
+
   data: () => ({
     curProject: util.copyObject(PROJECTMODEL),
     dialog: false,
@@ -92,17 +106,22 @@ export default {
   }),
   methods: {
     addProject: function() {
-      let _this = this;
-      _this.curProject.siteId = _this.curSite.siteId;
+    let _this = this;
+      _this.curProject.siteId = _this.siteId;
       _this.curProject.projectId = 0;
-      axios
-        .put(`site/${_this.curSite.siteId}`, _this.curProject)
+      api.addSiteProject(_this.siteId,_this.curProject)
         .then(res => {
           _this.curProject.projectId = res.data;
           _this.$refs.table.addFunction(_this.curProject);
         })
         .catch(reason => console.error(reason));
       this.dialog = false;
+      this.$emit('closemodal');
+      
+    },
+    closeModal(){
+      this.dialog = false;
+      this.$emit('closemodal');
     }
   }
 };

@@ -1,5 +1,5 @@
 export {UserModel, GroupModel, BASEPAGEMODEL, BASEPAGEREQMODEL, BASEPAGERESMODEL,
-    ACEMODEL, ACLMODEL, PROJECTMODEL, SITEMODEL, BoardDto, BoardDetailDto, SolutionDto, SiteDto};
+    ACEMODEL, ACLMODEL, PROJECTMODEL, SITEMODEL, BoardDto, BoardDetailDto, SolutionDto, SiteDto,STEP,GRADE};
 
 const UserModel= {"id":"","name":"","type":"USER","groupId":-1,"groupName":"","password":""};
 const GroupModel = {"id":0,"name":"Root","parentId":-1,"children":[]};
@@ -63,4 +63,16 @@ const SiteDto = {
 	        "hits": 0,
 	        "contents": null
 	    }
-	};
+    };
+const STEP={
+    "0" : "분석",
+    "1" : "설계",
+    "2" : "개발",
+    "3" : "이행",
+    "4" : "완료"
+};
+const GRADE={
+    "0" : "하",
+    "1" : "중",
+    "2" : "상"
+};

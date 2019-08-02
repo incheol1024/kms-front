@@ -17,6 +17,7 @@
             :delete-function="deleteBoard"
           ></table-component>
           <v-btn color="primary" @click="addBoard">Add Board</v-btn>
+          <v-btn color="primary" @click="backProject">BACK Project</v-btn>
         </v-window-item>
       </v-window>
     </v-flex>
@@ -87,6 +88,9 @@ export default {
       let _this = this;
       if (confirm("삭제하시겠습니까?"))
         return api.deleteSiteProjectBoard(_this.curSite.siteId,_this.curProject.projectId,item.boardId)
+    },
+    backProject(){
+      router.go(-1)
     }
   }
 };
