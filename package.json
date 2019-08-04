@@ -18,6 +18,7 @@
     "vuetify-upload-button": "^2.0.2"
   },
   "devDependencies": {
+    "@mdi/font": "^3.8.95",
     "@vue/cli-plugin-babel": "^3.10.0",
     "@vue/cli-service": "^3.10.0",
     "stylus": "^0.54.5",

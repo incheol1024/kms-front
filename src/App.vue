@@ -1,24 +1,22 @@
 <template>
   <v-app id="app">
-    <v-toolbar :clipped-left="$vuetify.breakpoint.lgAndUp" color="blue darken-3" dark app fixed>
-      <v-toolbar-title style="width: 100px" class="ml-0 pl-3">
-        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      </v-toolbar-title>
+    <v-app-bar color="blue darken-3" dark app fixed>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+     
       <v-text-field
         flat
         solo-inverted
         hide-details
-        prepend-inner-icon="search"
         label="Search"
         @keyup.enter="submit"
         placeholder="Press Enter"
       ></v-text-field>
       <v-btn icon @click="logout">
-        <v-icon>cancel</v-icon>
+        <v-icon>mdi-cancel</v-icon>
       </v-btn>
-    </v-toolbar>
+    </v-app-bar>
 
-    <v-navigation-drawer :clipped="$vuetify.breakpoint.lgAndUp" v-model="drawer" fixed app>
+    <v-navigation-drawer v-model="drawer" app>
       <side-nav></side-nav>
     </v-navigation-drawer>
     

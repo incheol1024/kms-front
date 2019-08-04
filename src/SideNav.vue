@@ -5,44 +5,34 @@
 
     <v-card>
       <v-list>
-        <v-list-group v-for="(item,i) in items" :key="i" prepend-icon="local_activity" no-action>
+        <v-list-group v-for="(item,i) in items" :key="i" prepend-icon="mdi-local-activity" no-action>
           <template v-slot:activator>
-            <v-list-tile>
-              <v-list-tile-content>
-                <v-list-tile-title>{{ item.text }}</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
+            <v-list-item-title>{{ item.text }}</v-list-item-title>
           </template>
-
-          <v-list-tile
-            v-for="(children,k) in item.children"
-            :key="k"
-            @click="route(children)"
-            avatar
-          >
-            <v-list-tile-content>
-              <v-list-tile-title>{{children.name}}</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
+          <v-list-item v-for="(children,k) in item.children" :key="k" @click="route(children)">
+            <v-list-item-content>
+              <v-list-item-title>{{children.name}}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list-group>
 
-        <v-list-tile avatar @click="setting">
-          <v-list-tile-action>
-            <v-icon>settings</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Setting</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+        <v-list-item @click="setting">
+          <v-list-item-icon>
+            <v-icon>mdi-settings</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Setting</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-        <v-list-tile avatar @click="help">
-          <v-list-tile-action>
-            <v-icon>help</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Help</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+        <v-list-item @click="help">
+          <v-list-item-icon>
+            <v-icon>mdi-help</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Help</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-card>
   </v-container>
@@ -51,7 +41,7 @@
 <script>
 import router from "@/router";
 import api from "@/apis/api";
-import {SideNavBus} from "@/bus"
+import { SideNavBus } from "@/bus";
 
 export default {
   data: () => ({

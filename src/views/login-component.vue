@@ -6,8 +6,8 @@
           <v-toolbar-title>TEAM KMS</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <v-text-field prepend-icon="person" v-model="name" label="Login" type="text"></v-text-field>
-          <v-text-field prepend-icon="lock" v-model="password" label="Password" type="password"></v-text-field>
+          <v-text-field prepend-icon="mdi-person" v-model="name" label="Login" type="text"></v-text-field>
+          <v-text-field prepend-icon="mdi-lock" v-model="password" label="Password" type="password"></v-text-field>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>

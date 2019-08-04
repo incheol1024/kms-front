@@ -3,9 +3,9 @@
     <v-data-table
       :headers="headers"
       :items="datas"
-      :pagination.sync="pagination"
-      :total-items="totalCount"
-      :select-all="!!allowSelect"
+      :options.sync="pagination"
+      :server-items-length="totalCount"
+      :show-select="!!allowSelect"
       v-model="selection"
       :loading="loading"
       must-sort
@@ -22,8 +22,8 @@
             @click="clickRow(props.item)"
           >{{ value }}</td>
           <td v-if="allowDelete || allowEdit">
-            <v-icon v-if="allowEdit" small class="mr-2" @click="editItem(props.item)">edit</v-icon>
-            <v-icon v-if="allowDelete" small @click="deleteItem(props.item)">delete</v-icon>
+            <v-icon v-if="allowEdit" small class="mr-2" @click="editItem(props.item)">mdi-edit</v-icon>
+            <v-icon v-if="allowDelete" small @click="deleteItem(props.item)">mdi-delete</v-icon>
           </td>
         </tr>
       </template>
