@@ -4,16 +4,18 @@
       <h3>Site List</h3>
       <v-card>
         <v-list>
-          <v-list-tile v-for="site in siteData" :key="site.siteId" @click="setSite(site)">
-            <v-list-tile-content>
-              <v-list-tile-title v-html="site.name"></v-list-tile-title>
-            </v-list-tile-content>
-            <v-list-tile-action>
-              <v-btn icon ripple>
-                <v-icon color="grey lighten-1" @click.stop="deleteSite(site)">close</v-icon>
+           <v-list-item-group>
+          <v-list-item v-for="site in siteData" :key="site.siteId" @click="setSite(site)">
+            <v-list-item-content>
+              <v-list-item-title v-text="site.name"></v-list-item-title>
+            </v-list-item-content>
+            <v-list-item-action>
+              <v-btn class="mx-2" fab dark small color="primary" >
+                <v-icon color="white lighten-1" @click.stop="deleteSite(site)" >--</v-icon>
               </v-btn>
-            </v-list-tile-action>
-          </v-list-tile>
+            </v-list-item-action>
+          </v-list-item>
+         </v-list-item-group>
         </v-list>
         <v-spacer></v-spacer>
         <v-text-field v-model="siteName" label="input SiteName" single-line hide-details></v-text-field>
@@ -30,6 +32,7 @@ import router from "@/router"
 import api from "@/apis/api"
 
 export default {
+  name:"siteslist-component",
   props: ["id"],
   mounted: function() {
         this.getSiteList(this.id);
