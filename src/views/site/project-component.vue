@@ -13,6 +13,7 @@
             ></table-component>
             <v-btn color="primary" @click="dialog = true">Add Project</v-btn>
             <v-btn color="primary" @click="backSite">BACK SITE</v-btn>
+            <v-btn color="primary" @click="boardCall">Board Call</v-btn>
       </v-flex>
           <v-layout>
             <sitesdialog-component 
@@ -40,6 +41,7 @@ import api from "@/apis/api"
 import { setPriority } from 'os';
 
 export default {
+  name:"project-component",
   components: {
     "table-component": table,
     "sitesdialog-component": sitedialog
@@ -58,6 +60,8 @@ export default {
     startDialog: false,
     endDialog: false,
     projectHeader: [
+      { text: "siteId", value: "siteId" ,hide : true},
+      { text: "projectId",value:"projectId"},
       { text: "프로젝트명", value: "name" },
       { text: "등급(상,중,하)", value: "grade" },
       { text: "진척현황", value: "step" },
@@ -70,6 +74,7 @@ export default {
   methods: {
     getProjects: function(page) {
       if (this.siteId === 0) return;
+      console.log(page);
         return api.getSiteProjectList(this.id, this.siteId, page)
     },
 
@@ -79,6 +84,8 @@ export default {
         this.$refs.table.sync();
     },
     getBoard: function(item) {
+
+      console.log('board call');
       let _this = this;
       _this.curProject.name = item.name;
       _this.curProject.projectId = item.projectId;
@@ -92,6 +99,9 @@ export default {
     closemodal(){
      this.dialog = false;
      this.$refs.table.sync();
+    },
+    boardCall(){
+      router.push(`/sites/13/9/17`);
     }
 
   }

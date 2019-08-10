@@ -11,6 +11,7 @@
                    @click="save">
                 {{buttonName}}
             </v-btn>
+             <v-btn color="primary" @click="back">BACK Project</v-btn>
         </v-flex>
         <v-flex v-if="showComment" xs12>
             <comment-component comment-component :qid="boardId"></comment-component>
@@ -23,6 +24,7 @@ import comment from "@/components/comment-component.vue"
 import {SiteDto} from "@/model" 
 import * as util from "@/util"
 import api from "@/apis/api"
+import router from "@/router"
 
 export default  {
     components : {
@@ -72,7 +74,11 @@ export default  {
                   this.$router.go(-1);
                   //this.$router.push(`/sites/${this.menuId}`);
               });
-      }
+      },
+       back(){
+           console.log('tt')
+         router.go(-1)
+    }
   }
 }
 </script>

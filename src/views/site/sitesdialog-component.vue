@@ -13,7 +13,6 @@
                 v-model="startDialog"
                 :close-on-content-click="false"
                 :nudge-right="40"
-                lazy
                 transition="scale-transition"
                 offset-y
                 full-width
@@ -36,7 +35,6 @@
                 v-model="endDialog"
                 :close-on-content-click="false"
                 :nudge-right="40"
-                lazy
                 transition="scale-transition"
                 offset-y
                 full-width
@@ -61,8 +59,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="closeModal">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click="addProject">Save</v-btn>
+          <v-btn color="blue darken-1"  @click="closeModal">Close</v-btn>
+          <v-btn color="blue darken-1"  @click="addProject">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
