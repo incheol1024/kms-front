@@ -5,7 +5,7 @@
 
     <v-card>
       <v-list>
-        <v-list-group v-for="(item,i) in items" :key="i" prepend-icon="mdi-local-activity" no-action>
+        <v-list-group v-for="(item,i) in items" :key="i" prepend-icon="label" no-action>
           <template v-slot:activator>
             <v-list-item-title>{{ item.text }}</v-list-item-title>
           </template>
@@ -18,7 +18,7 @@
 
         <v-list-item @click="setting">
           <v-list-item-icon>
-            <v-icon>mdi-settings</v-icon>
+            <v-icon>settings</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>Setting</v-list-item-title>
@@ -27,7 +27,7 @@
 
         <v-list-item @click="help">
           <v-list-item-icon>
-            <v-icon>mdi-help</v-icon>
+            <v-icon>help</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>Help</v-list-item-title>

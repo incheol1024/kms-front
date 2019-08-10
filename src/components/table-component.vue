@@ -7,28 +7,24 @@
       :server-items-length="totalCount"
       :show-select="allowSelect"
       :loading="loading"
-      must-sort
       class="elevation-1"
     >
       <template slot="items" slot-scope="props">
         <tr>
-          <td
-            v-for="value in mappingHeader(props.item)"
-            :key="value.id"
-          >{{ value }}</td>
-          <td v-if="allowDelete || allowEdit">
-            <v-icon v-if="allowEdit" small class="mr-2" @click="editItem(props.item)">mdi-edit</v-icon>
-            <v-icon v-if="allowDelete" small @click="deleteItem(props.item)">mdi-delete</v-icon>
-          </td>
+          <td v-for="value in mappingHeader(props.item)" :key="value.id">{{ value }}</td>
         </tr>
+      </template>
+      <template v-slot:item.action="{ item }">
+        <v-icon v-if="allowEdit" small class="mr-2" @click="editItem(item)">edit</v-icon>
+        <v-icon v-if="allowDelete" small @click="deleteItem(item)">delete</v-icon>
       </template>
     </v-data-table>
   </div>
 </template>
 
 <script>
-import * as util from "@/util"
-import {EventBus} from "@/bus.js"
+import * as util from "@/util";
+import { EventBus } from "@/bus.js";
 
 export default {
   props: {
@@ -90,7 +86,7 @@ export default {
     clickRow: {
       default(item) {},
       type: Function
-    }
+    },
   },
   data: () => ({
     datas: [],
@@ -116,7 +112,7 @@ export default {
           this.totalCount = response.data.totalElements;
         }
       } catch (e) {
-        console.error(e)
+        console.error(e);
       } finally {
         this.loading = false;
       }

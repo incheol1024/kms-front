@@ -12,7 +12,7 @@
         placeholder="Press Enter"
       ></v-text-field>
       <v-btn icon @click="logout">
-        <v-icon>mdi-cancel</v-icon>
+        <v-icon>cancel</v-icon>
       </v-btn>
     </v-app-bar>
 

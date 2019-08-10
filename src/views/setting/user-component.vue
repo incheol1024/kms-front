@@ -65,7 +65,7 @@
                   slot="prepend"
                   slot-scope="{ item, active }"
                   :color="active ? 'primary' : ''"
-                >mdi-account</v-icon>
+                >account</v-icon>
               </v-treeview>
             </v-card>
             <v-btn color="primary" @click="send">Confirm</v-btn>

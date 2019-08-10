@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import "vuetify/dist/vuetify.min.css";
 import 'codemirror/lib/codemirror.css'
-import '@mdi/font/css/materialdesignicons.css'
 import VueCodemirror from 'vue-codemirror'
 import CKEditor from '@ckeditor/ckeditor5-vue'
 import VuetifyUploadButton from 'vuetify-upload-button'
