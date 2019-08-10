@@ -7,13 +7,11 @@
             <v-layout wrap column>
               <h3 class="headline mb-0">Acl List</h3>
               <v-list two-line>
-                <template v-for="data in listData">
-                  <v-list-tile :key="data.aclId" ripple @click="setItem(data)">
-                    <v-list-tile-content>
-                      <v-list-tile-title>{{data.aclId}}</v-list-tile-title>
-                      <v-list-tile-sub-title>{{data.aclName}}</v-list-tile-sub-title>
-                    </v-list-tile-content>
-                  </v-list-tile>
+                <template v-for="data in listData" ripple @click="setItem(data)">
+                  <v-list-item-content :key="data.aclId">
+                    <v-list-item-title>{{data.aclId}}</v-list-item-title>
+                    <v-list-item-subtitle>{{data.aclName}}</v-list-item-subtitle>
+                  </v-list-item-content>
                   <v-divider :key="data.aclId"></v-divider>
                 </template>
               </v-list>
@@ -84,7 +82,7 @@
 import * as util from "@/util";
 import api from "@/apis/api";
 import table from "@/components/table-component.vue";
-import {ACLMODEL,ACEMODEL} from "@/model"
+import { ACLMODEL, ACEMODEL } from "@/model";
 
 export default {
   components: {
