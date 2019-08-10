@@ -2,8 +2,8 @@ export { getJavaMaxPage, jsTojavaPage, copyObject};
 
 let jsTojavaPage = function jsTojavaPage(pagination) {
     let str = "asc";
-    if (pagination.descending) str = "desc";
-    return {page: pagination.page-1, size: pagination.rowsPerPage, sort: pagination.sortBy + "," + str}
+    if (pagination.sortDesc[0]) str = "desc";
+    return {page: pagination.page-1, size: pagination.itemsPerPage, sort: pagination.sortBy[0] + "," + str}
 };
 
 let getJavaMaxPage = function getJavaMaxPage() {

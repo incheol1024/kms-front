@@ -5,21 +5,16 @@
       :items="datas"
       :options.sync="pagination"
       :server-items-length="totalCount"
-      :show-select="!!allowSelect"
-      v-model="selection"
+      :show-select="allowSelect"
       :loading="loading"
       must-sort
       class="elevation-1"
     >
       <template slot="items" slot-scope="props">
         <tr>
-          <td v-if="allowSelect">
-            <v-checkbox v-model="props.selected" primary hide-details @change="updateSelection"></v-checkbox>
-          </td>
           <td
             v-for="value in mappingHeader(props.item)"
             :key="value.id"
-            @click="clickRow(props.item)"
           >{{ value }}</td>
           <td v-if="allowDelete || allowEdit">
             <v-icon v-if="allowEdit" small class="mr-2" @click="editItem(props.item)">mdi-edit</v-icon>
@@ -101,7 +96,6 @@ export default {
     datas: [],
     pagination: {},
     loading: false,
-    length: 0,
     totalCount: 0
   }),
   watch: {
@@ -145,9 +139,6 @@ export default {
       });
       return arr;
     },
-    updateSelection() {
-      this.$emit("update:selection", this.selection);
-    },
     clear() {
       this.datas = [];
     }
@@ -156,15 +147,4 @@ export default {
 </script>
 
 <style scoped>
-tr:hover {
-  cursor: pointer;
-}
-
-td:hover {
-  cursor: pointer;
-}
-
-table thead tr th span {
-  font-size: 1.0625rem !important;
-}
 </style>
