@@ -13,7 +13,6 @@
         v-model="search"
         :page-req="getQnaList"
         :allow-delete="true"
-        :click-row="clickRow"
         :delete-function="deleteQna"
       ></table-component>
     </v-card>
@@ -42,7 +41,6 @@ export default {
     ],
     search: ""
   }),
-  created: function() {},
   methods: {
     async getQnaList(page) {
       return await api.getQnaList(this.id,page)

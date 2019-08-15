@@ -9,14 +9,9 @@
       :loading="loading"
       class="elevation-1"
     >
-      <template slot="items" slot-scope="props">
-        <tr>
-          <td v-for="value in mappingHeader(props.item)" :key="value.id">{{ value }}</td>
-        </tr>
-      </template>
       <template v-slot:item.action="{ item }">
-        <v-icon v-if="allowEdit" small class="mr-2" @click="editItem(item)">edit</v-icon>
-        <v-icon v-if="allowDelete" small @click="deleteItem(item)">delete</v-icon>
+        <v-icon small class="mr-2" @click="editItem(item)">edit</v-icon>
+        <v-icon small @click="deleteItem(item)">delete</v-icon>
       </template>
     </v-data-table>
   </div>
@@ -24,7 +19,6 @@
 
 <script>
 import * as util from "@/util";
-import { EventBus } from "@/bus.js";
 
 export default {
   props: {
@@ -73,20 +67,6 @@ export default {
       },
       type: Function
     },
-    selection: {
-      default() {
-        return [];
-      },
-      type: Array
-    },
-    search: {
-      default: "",
-      type: String
-    },
-    clickRow: {
-      default(item) {},
-      type: Function
-    },
   },
   data: () => ({
     datas: [],
@@ -127,13 +107,6 @@ export default {
       } catch (e) {
         console.error(e);
       }
-    },
-    mappingHeader(item) {
-      let arr = [];
-      this.headers.forEach(it => {
-        if ("undefined" !== typeof item[it.value]) arr.push(item[it.value]);
-      });
-      return arr;
     },
     clear() {
       this.datas = [];

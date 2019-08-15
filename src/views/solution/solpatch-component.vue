@@ -11,7 +11,6 @@
       v-model="search"
       :page-req="getSolutionList"
       :allow-delete="true"
-      :click-row="clickRow"
       :delete-function="deleteSolution"
     ></table-component>
   </v-card>
@@ -19,9 +18,8 @@
 
 <script>
 import table from "@/components/table-component.vue";
-import api from "@/apis/api"
+import api from "@/apis/api";
 import router from "@/router";
-
 
 export default {
   components: {
@@ -49,14 +47,14 @@ export default {
   },
   methods: {
     async getSolutionList(page) {
-      return await api.getSolutionList(this.id,page)
+      return await api.getSolutionList(this.id, page);
     },
     newWrite() {
       router.push(`/solutions/write/${this.id}/0`);
     },
     async deleteSolution(item) {
       if (confirm("삭제하시겠습니까?"))
-        return await api.deleteSolution(item.boardId)
+        return await api.deleteSolution(item.boardId);
     },
     clickRow(item) {
       router.push(`/solutions/write/${this.id}/${item.boardId}`);

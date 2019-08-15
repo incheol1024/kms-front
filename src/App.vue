@@ -2,7 +2,7 @@
   <v-app id="app">
     <v-app-bar color="blue darken-3" dark app fixed>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-     
+
       <v-text-field
         flat
         solo-inverted
@@ -19,10 +19,12 @@
     <v-navigation-drawer v-model="drawer" app>
       <side-nav></side-nav>
     </v-navigation-drawer>
-    
+
     <v-content>
-      <v-container fluid grid-list-md  fill-height>
-        <router-view></router-view>
+      <v-container fluid grid-list-md fill-height>
+        <v-fade-transition mode="out-in">
+          <router-view></router-view>
+        </v-fade-transition>
       </v-container>
     </v-content>
   </v-app>
@@ -45,14 +47,14 @@ export default {
   methods: {
     async logout() {
       try {
-        var response = await api.logout();       
+        var response = await api.logout();
       } finally {
-        router.push("/login")
+        router.push("/login");
       }
     },
     submit() {
       router.push("/search");
-    },
+    }
   }
 };
 

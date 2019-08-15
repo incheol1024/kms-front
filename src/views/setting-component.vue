@@ -2,7 +2,7 @@
   <v-layout>
     <v-card flat width="100%">
       <router-view></router-view>
-      <v-bottom-nav :active.sync="bottomNav" :value="true" shift :color="color">
+      <v-bottom-navigation v-model="bottomNav" shift :color="color">
         <v-btn dark @click="moveUser">
           <span>User</span>
           <v-icon>history</v-icon>
@@ -17,7 +17,7 @@
           <span>Permission</span>
           <v-icon>visibility</v-icon>
         </v-btn>
-      </v-bottom-nav>
+      </v-bottom-navigation>
     </v-card>
   </v-layout>
 </template>

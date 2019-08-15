@@ -16,15 +16,14 @@
             :cachekey="'id'"
             @nodeevent="actived"
           ></tree-component>
-          <v-btn color="primary" @click="NewItem">New</v-btn>
-          <v-btn color="primary" @click="EditName">EditName</v-btn>
-          <v-btn color="primary" @click="DeleteItem">Delete</v-btn>
+          <v-btn text color="primary" @click="NewItem">New</v-btn>
+          <v-btn text color="primary" @click="EditName">EditName</v-btn>
+          <v-btn text color="primary" @click="DeleteItem">Delete</v-btn>
         </v-card>
 
-        <v-tooltip bottom>
-          <v-icon slot="activator" color="pink" @click="Move">arrow_forward</v-icon>
-          <span>Move Group</span>
-        </v-tooltip>
+       
+        <v-icon slot="activator" color="pink" @click="Move">arrow_forward</v-icon>
+         
 
         <v-card raised>
           <v-card-title primary-title>
