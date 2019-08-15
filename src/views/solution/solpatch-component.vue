@@ -12,6 +12,7 @@
       :page-req="getSolutionList"
       :allow-delete="true"
       :delete-function="deleteSolution"
+      :click-row="clickRow"
     ></table-component>
   </v-card>
 </template>

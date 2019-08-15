@@ -1,4 +1,4 @@
-<template inline-template>
+<template>
   <div>
     <v-data-table
       :headers="headers"
@@ -7,8 +7,25 @@
       :server-items-length="totalCount"
       :show-select="allowSelect"
       :loading="loading"
+      must-sort
       class="elevation-1"
     >
+      <template v-slot:body="{ items }">
+        <tbody>
+          <tr v-for="item in items" :key="item.id">
+            <td
+              v-for="value in mappingHeader(item)"
+              :key="value.id"
+              @click="clickRow(item)"
+            >{{ value }}</td>
+            <td v-if="allowDelete || allowEdit">
+              <v-icon v-if="allowEdit" small class="mr-2" @click="editItem(item)">edit</v-icon>
+              <v-icon v-if="allowDelete" small @click="deleteItem(item)">delete</v-icon>
+            </td>
+          </tr>
+        </tbody>
+      </template>
+
       <template v-slot:item.action="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)">edit</v-icon>
         <v-icon small @click="deleteItem(item)">delete</v-icon>
@@ -67,6 +84,12 @@ export default {
       },
       type: Function
     },
+    clickRow: {
+      default(item) {
+        
+      },
+      type: Function
+    }
   },
   data: () => ({
     datas: [],
@@ -107,6 +130,13 @@ export default {
       } catch (e) {
         console.error(e);
       }
+    },
+    mappingHeader(item) {
+      let arr = [];
+      this.headers.forEach(it => {
+        if ("undefined" !== typeof item[it.value]) arr.push(item[it.value]);
+      });
+      return arr;
     },
     clear() {
       this.datas = [];
