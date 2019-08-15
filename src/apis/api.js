@@ -15,12 +15,13 @@ export default {
     getSolutionList: (id, page) => axios.get(`solution/${id}`, {
         params: page
     }),
-    getSolutionBugList: (id, page) => axios.get(`solution/bug/${id}`, {
+    getSolutionBugList: (id, page) => axios.get(`solution/${id}/bug`, {
         params: page
     }),
     deleteSolution: (boardId) => axios.delete(`solution/${boardId}`),
     getSolutionDetail: (menuId, boardId) => axios.get(`solution/${this.menuId}/${this.boardId}`),
-    addSolution: (solution) => axios.post(`solution`, solution),
+    addSolution: (solution) => axios.post(`solution/write`, solution),
+    addSolutionBug: (solution) => axios.post(`solution/write/bug`, solution),
     updateSolution: (solution) => axios.put(`solution`, solution),
 
     getGroup: _ => axios.get(`group`),

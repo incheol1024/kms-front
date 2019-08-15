@@ -15,7 +15,7 @@
         <solsite-component :id="id"></solsite-component>
       </v-tab-item>
       <v-tab-item>
-        <solmenual-component :id="id"></solmenual-component>
+        <solmanual-component :id="id"></solmanual-component>
       </v-tab-item>
     </v-tabs>
   </v-layout>
@@ -25,14 +25,14 @@
 import solutionPatch from "./solution/solpatch-component.vue";
 import solutionBug from "./solution/solbug-component.vue";
 import solutionSite from "./solution/solsite-component.vue";
-import solutionMenual from "./solution/solmenual-component.vue";
+import solutionManual from "./solution/solmanual-component.vue";
 
 export default {
   components: {
     "solpatch-component": solutionPatch,
     "solbug-component": solutionBug,
     "solsite-component": solutionSite,
-    "solmenual-component": solutionMenual
+    "solmanual-component": solutionManual
   },
   props: ["id"]
 };
