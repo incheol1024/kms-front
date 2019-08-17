@@ -7,8 +7,8 @@
             <v-layout wrap column>
               <h3 class="headline mb-0">Acl List</h3>
               <v-list two-line>
-                <template v-for="data in listData" ripple @click="setItem(data)">
-                  <v-list-item-content :key="data.aclId">
+                <template v-for="data in listData">
+                  <v-list-item-content :key="data.aclId" ripple @click="setItem(data)">
                     <v-list-item-title>{{data.aclId}}</v-list-item-title>
                     <v-list-item-subtitle>{{data.aclName}}</v-list-item-subtitle>
                   </v-list-item-content>
@@ -26,7 +26,7 @@
 
       <v-flex>
         <v-card>
-          <v-tabs color="transparent">
+          <v-tabs>
             <v-tab>Edit Acl</v-tab>
             <v-tab>Set User/Group</v-tab>
             <v-tab-item>
@@ -67,7 +67,7 @@
               </v-card-title>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-text-field class="mr2" label="Ace(Gropp/User) Id" v-model="aceText"></v-text-field>
+                <v-text-field class="mr2" label="Ace(Group/User) Id" v-model="aceText"></v-text-field>
                 <v-btn color="primary" @click="addAce">AddAce</v-btn>
               </v-card-actions>
             </v-tab-item>

@@ -8,15 +8,25 @@
 </template>
 
 <script>
+import {ErrorBus} from "@/bus"
+
 export default {
   data: () => ({
     errormsg: "",
     dialog: false
   }),
+  created(){
+    ErrorBus.$on("error",this.openError)
+  },
   methods: {
     openError(msg) {
-      this.errormsg = msg;
-      dialog = true;
+      if(typeof msg.response === 'undefined')
+        this.errormsg = msg.message
+      else if(typeof msg.response.data !== 'undefined')
+        this.errormsg = msg.response.data
+      else
+        this.errormsg = msg.response;
+      this.dialog = true;
     }
   }
 };

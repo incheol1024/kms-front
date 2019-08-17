@@ -37,7 +37,7 @@ export default {
       { text: "수정일", value: "updDate" },
       { text: "담당자", value: "manager", sortable: false },
       { text: "해결여부", value: "completed", sortable: false },
-      { text: "action", value: "", sortable: false }
+      { text: "action", value: "action", sortable: false }
     ],
     search: ""
   }),

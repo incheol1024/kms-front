@@ -27,6 +27,8 @@
         </v-fade-transition>
       </v-container>
     </v-content>
+
+    <error-component></error-component>
   </v-app>
 </template>
 
@@ -35,11 +37,13 @@
 import api from "./apis/api";
 import router from "./router";
 import sideNav from "./SideNav.vue";
+import errorComponent from "./components/error-component"
 
 export default {
   components: {
     router,
-    "side-nav": sideNav
+    "side-nav": sideNav,
+    "error-component" : errorComponent
   },
   data: () => ({
     drawer: null

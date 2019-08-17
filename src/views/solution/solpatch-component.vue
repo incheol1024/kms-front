@@ -37,7 +37,7 @@ export default {
       { text: "조회수", value: "hits", sortable: false },
       { text: "수정일", value: "updDate" },
       { text: "등록일자", value: "regDate" },
-      { text: "action", value: "aciton", sortable: false }
+      { text: "action", value: "action", sortable: false }
     ],
     search: ""
   }),

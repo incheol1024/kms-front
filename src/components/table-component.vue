@@ -36,6 +36,7 @@
 
 <script>
 import * as util from "@/util";
+import {ErrorBus} from "@/bus"
 
 export default {
   props: {
@@ -75,7 +76,9 @@ export default {
       type: Function
     },
     editFunction: {
-      default(item) {},
+      default(item) {
+        return new Promise(function(resolve, reject) {});
+      },
       type: Function
     },
     deleteFunction: {
@@ -85,9 +88,7 @@ export default {
       type: Function
     },
     clickRow: {
-      default(item) {
-        
-      },
+      default(item) {},
       type: Function
     }
   },
@@ -115,26 +116,34 @@ export default {
           this.totalCount = response.data.totalElements;
         }
       } catch (e) {
-        console.error(e);
+        ErrorBus.$emit("error",e)
       } finally {
         this.loading = false;
       }
     },
-    editItem: function editItem(item) {
-      this.editFunction(item);
+    async editItem(item) {
+      try {
+        await this.editFunction(item);
+      } catch (e) {
+        ErrorBus.$emit("error",e)
+      }
     },
     async deleteItem(item) {
       try {
         let response = await this.deleteFunction(item);
         this.datas.splice(this.datas.indexOf(item), 1);
       } catch (e) {
-        console.error(e);
+        ErrorBus.$emit("error",e)
       }
     },
     mappingHeader(item) {
       let arr = [];
       this.headers.forEach(it => {
-        if ("undefined" !== typeof item[it.value]) arr.push(item[it.value]);
+        if ("undefined" !== typeof item[it.value]) {
+          arr.push(item[it.value]);
+        } else if (it.value !== "actions" && it.value !== "action") {
+          arr.push("");
+        }
       });
       return arr;
     },
