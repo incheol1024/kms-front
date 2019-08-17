@@ -55,6 +55,12 @@
             <v-flex xs12 sm6 md4>
               <v-text-field v-model="curProject.manager" label="Manager"></v-text-field>
             </v-flex>
+            <v-flex xs12 sm6 md4>
+              <v-combobox v-model="curProject.grade" :items="grades"  label="난이도"></v-combobox>
+            </v-flex>
+            <v-flex xs12 sm6 md4>
+              <v-combobox v-model="curProject.step" :items="steps"  label="진척현황"></v-combobox>
+            </v-flex>
           </v-layout>
         </v-card-text>
         <v-card-actions>
@@ -69,10 +75,9 @@
 
 <script>
 import * as util from "@/util"
-import {PROJECTMODEL} from "@/model"
-import {GRADE} from "@/model"
-import {STEP} from "@/model"
+import {PROJECTMODEL,GRADE,STEP} from "@/model"
 import api from "@/apis/api"
+import { debuglog } from 'util';
 
 export default {
   props: {
@@ -93,24 +98,29 @@ export default {
       }   
   },
   mounted: function() {
-    
+   
   },
 
   data: () => ({
     curProject: util.copyObject(PROJECTMODEL),
     dialog: false,
     startDialog: false,
-    endDialog: false
+    endDialog: false,
+    grades: util.copyObject(GRADE),
+    steps:util.copyObject(STEP)
   }),
   methods: {
     addProject: function() {
     let _this = this;
       _this.curProject.siteId = _this.siteId;
       _this.curProject.projectId = 0;
+      
+     
+      //
       api.addSiteProject(_this.siteId,_this.curProject)
         .then(res => {
-          _this.curProject.projectId = res.data;
-          _this.$refs.table.addFunction(_this.curProject);
+         // _this.curProject.projectId = res.data;
+         // _this.$refs.table.addFunction(_this.curProject);
         })
         .catch(reason => console.error(reason));
       this.dialog = false;

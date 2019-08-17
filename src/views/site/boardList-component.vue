@@ -17,6 +17,7 @@
             :delete-function="deleteBoard"
           ></table-component>
           <v-btn color="primary" @click="addBoard">Add Board</v-btn>
+          <v-btn color="primary" @click="addBoard">인수인계 등록</v-btn>
           <v-btn color="primary" @click="backProject">BACK Project</v-btn>
         </v-window-item>
       </v-window>

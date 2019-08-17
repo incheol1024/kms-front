@@ -10,8 +10,8 @@
               <v-list-item-title v-text="site.name"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>
-              <v-btn class="mx-2" fab dark small color="primary" >
-                <v-icon color="white lighten-1" @click.stop="deleteSite(site)" dark >remvoe</v-icon>
+             <v-btn icon ripple small class="mr-2">
+                <v-icon color="grey lighten-1" @click.stop="deleteSite(site)">close</v-icon>
               </v-btn>
             </v-list-item-action>
           </v-list-item>

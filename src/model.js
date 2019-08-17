@@ -11,8 +11,8 @@ const ACEMODEL = {"aclId": "", "aceId": ""};
 const PROJECTMODEL = {
     "siteId": 0,
     "projectId": 0,
-    "grade": 0,
-    "step" : 0,
+    "grade": "",
+    "step" : "",
     "name": "",
     "startDate": "",
     "endDate": "",
@@ -64,15 +64,14 @@ const SiteDto = {
 	        "contents": null
 	    }
     };
-const STEP={
-    "0" : "분석",
-    "1" : "설계",
-    "2" : "개발",
-    "3" : "이행",
-    "4" : "완료"
-};
-const GRADE={
-    "0" : "하",
-    "1" : "중",
-    "2" : "상"
-};
+const STEP=[
+    "분석",
+     "설계",
+    "개발",
+    "이행",
+    "인수인계",
+    "완료"
+];
+const GRADE=[
+   "상","중","하"
+];

@@ -13,7 +13,7 @@
             ></table-component>
             <v-btn color="primary" @click="dialog = true">Add Project</v-btn>
             <v-btn color="primary" @click="backSite">BACK SITE</v-btn>
-            <v-btn color="primary" @click="boardCall">Board Call</v-btn>
+            <!-- <v-btn color="primary" @click="boardCall">Board Call</v-btn> -->
       </v-flex>
           <v-layout>
             <sitesdialog-component 
@@ -74,7 +74,6 @@ export default {
   methods: {
     getProjects: function(page) {
       if (this.siteId === 0) return;
-      console.log(page);
         return api.getSiteProjectList(this.id, this.siteId, page)
     },
 
