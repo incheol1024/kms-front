@@ -10,7 +10,8 @@
       :headers="headers"
       v-model="search"
       :page-req="getSolutionList"
-      :allow-delete="true"
+      :allow-delete="true" 
+      :sort-by="'boardId'"
       :delete-function="deleteSolution"
       :click-row="clickRow"
     ></table-component>

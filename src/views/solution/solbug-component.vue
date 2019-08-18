@@ -12,6 +12,7 @@
       :page-req="getSolutionBugList"
       :allow-delete="true"
       :delete-function="deleteSolution"
+      :sort-by="'boardId'"
       :click-row="clickRow"
     ></table-component>
   </v-card>

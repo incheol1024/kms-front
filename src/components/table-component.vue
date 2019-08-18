@@ -7,6 +7,8 @@
       :server-items-length="totalCount"
       :show-select="allowSelect"
       :loading="loading"
+      :sort-by="sortBy"
+      :sort-desc="false"
       must-sort
       class="elevation-1"
     >
@@ -90,7 +92,12 @@ export default {
     clickRow: {
       default(item) {},
       type: Function
-    }
+    },
+    sortBy : {
+      default : '',
+      type : String,
+      required : true
+    },
   },
   data: () => ({
     datas: [],
