@@ -9,7 +9,7 @@ axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'X-Requested-Wit
 
 export default {
     getMenu: (type) => axios.get(`menu/${type}`),
-    login : (bodyFormData) => axios.post(`login`,bodyFormData),
+    login: (bodyFormData) => axios.post(`login`, bodyFormData),
     logout: _ => axios.post(`logout`),
 
     getSolutionList: (id, page) => axios.get(`solution/${id}`, {
@@ -50,14 +50,15 @@ export default {
     addUser: (user) => axios.put(`user`, user),
     updateUser: (user) => axios.post(`user`, user),
     addAvatar: (formData) => axios.post(`user/avatar`, formData, {
-        headers: { "Content-Type": "multipart/form-data" }
+        headers: {"Content-Type": "multipart/form-data"}
     }),
 
     addQna: (menuId, subject, content) => axios.post(`qna/register/${menuId}`, {
         "subject": subject,
         contents: content
     }),
-    getQnaList: (id, page) => axios.get(`qna/${id}`, { params: page }),
+    getQna: (boardId) => axios.get(`/qna/answer/${boardId}` ),
+    getQnaList: (id, page) => axios.get(`qna/${id}`, {params: page}),
     deleteQna: (boardId) => axios.delete(`qna/delete/${boardId}`),
 
     getSiteDeatil: (menuId, siteId, projectId, boardId) =>
@@ -76,7 +77,7 @@ export default {
     getSiteProjectBoardList: (menuId, siteId, projectId, page) => axios.get(`site/${menuId}/${siteId}/${projectId}`, {
         params: page
     }),
-    deleteSiteProjectBoard: (siteId,projectId,boardId) => axios.delete(`site/${siteId}/${projectId}/${boardId}`),
+    deleteSiteProjectBoard: (siteId, projectId, boardId) => axios.delete(`site/${siteId}/${projectId}/${boardId}`),
 
     getCommentList: (qid, pageNumber, size, sort) => axios.get(`comment/list/${qid}`, {
         params: {
@@ -85,5 +86,26 @@ export default {
             "sort": sort
         }
     }),
+    addFileForComment: (formData) => axios.post("file/upload/comment", formData, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    }),
+    addComment: (boardId, commentContents, commentCode, fileTransactKey, fileCount) => axios.post("/comment/add", {
+        boardId: boardId,
+        cmtContents: commentContents,
+        cmtCode: commentCode,
+        fileTransactKey: fileTransactKey,
+        fileCount: fileCount
+    }),
+    addCommentAndFile: (boardId, commentContents, commentCode, fileTransactKey, fileCount) => axios.post("/comment/add/files", {
+        boardId: boardId,
+        cmtContents: commentContents,
+        cmtCode: commentCode,
+        fileTransactKey: fileTransactKey,
+        fileCount: fileCount
+    }),
+
+
 }
 

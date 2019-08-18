@@ -7,7 +7,7 @@
             <img :src="imgSrc" alt="John" />
           </v-avatar>
           <v-spacer></v-spacer>
-          <v-btn v-if="isRequiredFileButton" flat color="orange" @click="pickFile">파일 추가</v-btn>
+          <v-btn v-if="isRequiredFileButton" color="orange" @click="pickFile">파일 추가</v-btn>
           <input
             type="file"
             style="display: none"
@@ -16,7 +16,7 @@
             @change="onFilePickedCustom"
             multiple
           />
-          <v-btn v-if="isRequiredCodeButton" flat color="orange" @click="viewCodemirror">코드 추가</v-btn>
+          <v-btn v-if="isRequiredCodeButton" color="orange" @click="viewCodemirror">코드 추가</v-btn>
           <v-btn
             :loading="uploading"
             :disabled="uploading"
@@ -56,6 +56,7 @@
 <script>
 import write from "@/components/write-component.vue"
 import code from "@/components/codemirror-component.vue"
+import api from "@/apis/api.js"
 
 export default {
   components : {
@@ -209,7 +210,7 @@ export default {
           this.addComment();
         }) // add comment
         .then(() => {
-          this.initailizeProperty();
+          this.initializeProperty();
         })
         .catch(error => console.log(error));
     },
@@ -219,21 +220,14 @@ export default {
       return true;
     },
     addFile: function() {
-      console.log("addFile()");
-      // set FormData
+
       let formData = new FormData();
       formData.append("boardId", this.qid);
       this.fileChips.forEach(fileChip => {
         formData.append("multiPartFile", fileChip.file);
       });
 
-      // axios post request
-      return axios
-        .post("file/upload/comment", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
-        })
+      api.addFileForComment(formData)
         .then(response => {
           return response;
         })
@@ -249,14 +243,7 @@ export default {
 
       console.log(url);
 
-      axios
-        .post(url, {
-          boardId: Number(this.qid),
-          cmtContents: this.$refs.commentEditor.getText(),
-          cmtCode: this.cmtCode,
-          fileTransactKey: this.fileTransactKey,
-          fileCount: this.fileCount
-        })
+      api.addComment(Number(this.qid), this.$refs.commentEditor.getText(), this.cmtCode, this.fileTransactKey, this.fileCount)
         .then(response => {
           console.log("emit upload-comment");
           this.$emit('upload-comment','');
@@ -266,7 +253,7 @@ export default {
           console.log(error);
         });
     },
-    initailizeProperty: function() {
+    initializeProperty: function() {
       this.fileChips = [];
     },
     viewCodemirror: function() {
