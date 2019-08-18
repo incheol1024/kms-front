@@ -13,11 +13,11 @@
                         {{ comment.cmtId }} - {{ comment.cmtDate }}
                         <v-spacer></v-spacer>
 
-                        <v-btn flat icon @click="updateComment(comment, index)">
+                        <v-btn icon @click="updateComment(comment, index)">
                             <v-icon>build</v-icon>
 
                         </v-btn>
-                        <v-btn flat icon @click="deleteComment(comment.cmtId, index)">
+                        <v-btn icon @click="deleteComment(comment.cmtId, index)">
                             <v-icon>delete</v-icon>
                         </v-btn>
                     </v-card-title>
@@ -36,7 +36,7 @@
                     <v-card-actions v-if="isExistDocEntry(comment.docDtos)">
                         <div>
                             <template v-for="doc in comment.docDtos">
-                                <v-chip close color="orange" label outline :key="index"
+                                <v-chip close color="orange" label :key="index"
                                         @click="fileDownload(doc)">
                                     {{doc.docName}}
                                 </v-chip>
@@ -44,7 +44,7 @@
                         </div>
                     </v-card-actions>
                     <v-card-actions>
-                        <v-btn flat icon color="blue lighten-2" @click.prevent="updateLike(comment.cmtId, index)">
+                        <v-btn icon color="blue lighten-2" @click.prevent="updateLike(comment.cmtId, index)">
                             <v-icon>thumb_up</v-icon>
                         </v-btn>
                         <span class="subheading mr-2">{{comment.cmtLike}}</span>
