@@ -1,16 +1,19 @@
 <template>
     <v-layout wrap>
         <v-flex xs12>
-            <v-text-field v-model="curSolution.boardDetailDto.subject" label="제목입니다" single-line></v-text-field>
+            <v-text-field v-model="curSolution.boardDetailDto.subject" label="B_제목입니다" single-line></v-text-field>
         </v-flex>
         <v-flex xs12>
             <write-component ref="editor" v-bind:read-only="curSolution.boardDetailDto.readOnly"></write-component>
         </v-flex>
         <v-flex xs12 lg4>
-            <v-btn v-if="!curSolution.boardDetailDto.readOnly" :loading="loading" :disabled="loading" color="primary"
-                   @click="save">
-                {{buttonName}}
-            </v-btn>
+            <v-btn 
+              v-if="!curSolution.boardDetailDto.readOnly"
+              :loading="loading"
+              :disabled="loading"
+              color="primary"
+              @click="save"
+            >{{buttonName}}</v-btn>
         </v-flex>
         <v-flex v-if="showComment" xs12>
             <comment-component comment-component :qid="boardId"></comment-component>
@@ -26,6 +29,7 @@ import router from "@/router"
 import table from "@/components/table-component.vue";
 import comment from "@/components/comment-component.vue";
 import write from "@/components/write-component.vue"
+import {ErrorBus} from "@/bus";
 
 export default {
   components: {
@@ -63,7 +67,7 @@ export default {
         if (this.boardId !== "0") await api.updateSolution(this.curSolution);
         else await api.addSolutionBug(this.curSolution);
       } catch (e) {
-        console.error(e);
+        ErrorBus.$emit("error",e)
       } finally {
         this.loading = false;
         router.push(`/solutions/${this.menuId}`);

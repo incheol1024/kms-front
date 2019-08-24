@@ -3,7 +3,7 @@
     <v-card-title>
       <v-spacer></v-spacer>
       <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
-      <v-btn color="primary" @click="newWrite">글쓰기</v-btn>
+      <v-btn color="primary" @click="newWrite">메뉴얼작성</v-btn>
     </v-card-title>
     <table-component
       ref="table"
@@ -35,7 +35,7 @@ export default {
       { text: "조회수", value: "hits", sortable: false },
       { text: "등록일자", value: "regDate" },
       { text: "수정일", value: "updDate" },
-      { text: "action", value: "", sortable: false }
+      { text: "action", value: "action", sortable: false }
     ],
     search: ""
   }),

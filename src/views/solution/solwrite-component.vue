@@ -23,12 +23,13 @@
 
 <script>
 import * as util from "@/util";
-import {SolutionDto} from "@/model"
+import {SolutionDto} from "@/model";
 import api from "@/apis/api";
-import router from "@/router"
+import router from "@/router";
 import table from "@/components/table-component.vue";
 import comment from "@/components/comment-component.vue";
-import write from "@/components/write-component.vue"
+import write from "@/components/write-component.vue";
+import {ErrorBus} from "@/bus";
 
 export default {
   components: {
@@ -66,7 +67,7 @@ export default {
         if (this.boardId !== "0") await api.updateSolution(this.curSolution);
         else await api.addSolution(this.curSolution);
       } catch (e) {
-        console.error(e);
+        ErrorBus.$emit("error",e)
       } finally {
         this.loading = false;
         router.push(`/solutions/${this.menuId}`);

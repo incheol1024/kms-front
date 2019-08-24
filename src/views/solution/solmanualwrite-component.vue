@@ -1,7 +1,7 @@
 <template>
     <v-layout wrap>
         <v-flex xs12>
-            <v-text-field v-model="curSolution.boardDetailDto.subject" label="제목입니다" single-line></v-text-field>
+            <v-text-field v-model="curSolution.boardDetailDto.subject" label="M_제목입니다" single-line></v-text-field>
         </v-flex>
         <v-flex xs12>
             <write-component ref="editor" v-bind:read-only="curSolution.boardDetailDto.readOnly"></write-component>
@@ -61,7 +61,7 @@ export default {
       this.curSolution.boardDetailDto.contents = this.$refs.editor.getText();
       try {
         if (this.boardId !== "0") await api.updateSolution(this.curSolution);
-        else await api.addSolutionBug(this.curSolution);
+        else await api.addSolutionManual(this.curSolution);
       } catch (e) {
         console.error(e);
       } finally {
