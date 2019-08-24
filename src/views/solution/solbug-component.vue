@@ -55,8 +55,8 @@ export default {
       router.push(`/solutions/write/bug/${this.id}/0`);
     },
     async deleteSolution(item) {
-      if (confirm("삭제하시겠습니까?"))
-        return await api.deleteSolution(item.boardId);
+      if (confirm("B_삭제하시겠습니까?"))
+        return await api.deleteSolutionBug(item.boardId);
     },
     clickRow: function(item) {
       router.push(`/solutions/write/bug/${this.id}/${item.boardId}`);

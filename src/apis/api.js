@@ -19,6 +19,7 @@ export default {
         params: page
     }),
     deleteSolution: (boardId) => axios.delete(`solution/${boardId}`),
+    deleteSolutionBug: (boardId) => axios.delete(`solution/bug/${boardId}`),
     getSolutionDetail: (menuId, boardId) => axios.get(`solution/${this.menuId}/${this.boardId}`),
     addSolution: (solution) => axios.post(`solution/write`, solution),
     addSolutionBug: (solution) => axios.post(`solution/write/bug`, solution),
