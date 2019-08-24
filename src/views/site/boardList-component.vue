@@ -56,7 +56,7 @@ export default {
       { text: "수정일", value: "updDate" },
       { text: "등록일", value: "regDate" },
       { text: "조회수", value: "hits" },
-      { text: "action", value: "", sortable: false }
+      { text: "action", value: "action", sortable: false }
     ]
   }),
   methods: {

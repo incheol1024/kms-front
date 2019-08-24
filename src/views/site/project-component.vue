@@ -9,6 +9,8 @@
               :page-req="getProjects"
               :allow-delete="true"
               :delete-function="deleteProject"
+              :allowEdit="true"
+              :edit-function="editProject"
               :click-row="getBoard"
             ></table-component>
             <v-btn color="primary" @click="dialog = true">Add Project</v-btn>
@@ -20,6 +22,7 @@
               :id="Number(this.id)"
               :siteId="Number(this.siteId)"
               :dialog="dialog"
+              :curProjects="curProject"
               v-on:closemodal="closemodal">
             </sitesdialog-component>
      
@@ -60,7 +63,7 @@ export default {
     startDialog: false,
     endDialog: false,
     projectHeader: [
-      { text: "siteId", value: "siteId" ,hide : true},
+      { text: "siteId", value: "siteId" },
       { text: "projectId",value:"projectId"},
       { text: "프로젝트명", value: "name" },
       { text: "등급(상,중,하)", value: "grade" },
@@ -83,8 +86,6 @@ export default {
         this.$refs.table.sync();
     },
     getBoard: function(item) {
-
-      console.log('board call');
       let _this = this;
       _this.curProject.name = item.name;
       _this.curProject.projectId = item.projectId;
@@ -92,12 +93,16 @@ export default {
       router.push(`/sites/${this.id}/${this.siteId}/${item.projectId}`);
     },
     backSite(){
-      console.log("siteback ")
       router.go(-1)
     },
     closemodal(){
      this.dialog = false;
      this.$refs.table.sync();
+    },
+    editProject(item){
+      this.dialog=true;
+      //this.curProject = item
+     
     },
     boardCall(){
       router.push(`/sites/13/9/17`);

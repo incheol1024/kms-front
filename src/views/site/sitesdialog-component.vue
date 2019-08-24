@@ -95,7 +95,10 @@ export default {
       dialog : {
                 type: Boolean,
                 default: false
-      }   
+      },
+      curProjects: Object
+              
+      
   },
   mounted: function() {
    
