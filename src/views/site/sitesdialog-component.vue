@@ -96,13 +96,24 @@ export default {
                 type: Boolean,
                 default: false
       },
-      curProjects: Object
+      curProject:{ type: Object,default: false}
               
       
   },
   mounted: function() {
    
   },
+  beforeMount:function(){
+    console.log('before');
+    console.log(this.curProject);
+    console.log('prop test');
+    console.log(this.curProjects);
+  },
+  computed:function(){
+    console.log('compute call')
+    console.log(this.curProjects);
+  },
+
 
   data: () => ({
     curProject: util.copyObject(PROJECTMODEL),

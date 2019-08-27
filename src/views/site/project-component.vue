@@ -22,7 +22,7 @@
               :id="Number(this.id)"
               :siteId="Number(this.siteId)"
               :dialog="dialog"
-              :curProjects="curProject"
+              :curProject="curProject"
               v-on:closemodal="closemodal">
             </sitesdialog-component>
      
@@ -95,13 +95,22 @@ export default {
     backSite(){
       router.go(-1)
     },
+    openModal(){
+      this.dialog=true;
+      this.curProject
+    },
     closemodal(){
      this.dialog = false;
      this.$refs.table.sync();
     },
     editProject(item){
+      console.log('edit call');
+      console.log(item);
       this.dialog=true;
-      //this.curProject = item
+      this.curProject = item
+      console.log('item binding')
+      console.log(this.curProject)
+      
      
     },
     boardCall(){
