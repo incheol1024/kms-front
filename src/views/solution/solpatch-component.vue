@@ -3,7 +3,7 @@
     <v-card-title>
       <v-spacer></v-spacer>
       <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
-      <v-btn color="primary" @click="newWrite">글쓰기</v-btn>
+      <v-btn color="primary" @click="patchWrite">패치작성</v-btn>
     </v-card-title>
     <table-component
       ref="table"
@@ -49,17 +49,17 @@ export default {
   },
   methods: {
     async getSolutionList(page) {
-      return await api.getSolutionList(this.id, page);
+      return await api.getSolutionPatchList(this.id, page);
     },
-    newWrite() {
-      router.push(`/solutions/write/${this.id}/0`);
+    patchWrite() {
+      router.push(`/solutions/write/patch/${this.id}/0`);
     },
     async deleteSolution(item) {
-      if (confirm("삭제하시겠습니까?"))
+      if (confirm("p_삭제하시겠습니까?"))
         return await api.deleteSolution(item.boardId);
     },
     clickRow(item) {
-      router.push(`/solutions/write/${this.id}/${item.boardId}`);
+      router.push(`/solutions/write/patch/${this.id}/${item.boardId}`);
     }
   }
 };

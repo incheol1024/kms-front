@@ -12,6 +12,7 @@ import solutionWrite from "./views/solution/solwrite-component.vue"
 import solutionbugWrite from "./views/solution/solbugwrite-component.vue"
 import solutionsiteWrite from "./views/solution/solsitewrite-component.vue"
 import solutionmanualWrite from "./views/solution/solmanualwrite-component.vue"
+import solutionpatchWrite from "./views/solution/solpatchwrite-component.vue"
 import qnaWrite from "./views/writingboard/qnawrite-component.vue"
 import qnaPost from "./views/board/qnapost-component.vue"
 import user from "./views/setting/user-component.vue"
@@ -40,6 +41,7 @@ export default new Router({
         { path: '/solutions/write/:menuId/:boardId', component: solutionWrite, props: true },
         { path: '/solutions/write/bug/:menuId/:boardId', component: solutionbugWrite, props: true },
         { path: '/solutions/write/site/:menuId/:boardId', component: solutionsiteWrite, props: true },
+        { path: '/solutions/write/patch/:menuId/:boardId', component: solutionpatchWrite, props: true },
         { path: '/solutions/write/manual/:menuId/:boardId', component: solutionmanualWrite, props: true },
         //누구냐 이거
         //{path: '/write/:id', component: Vue.component('write-component'), props: true},

@@ -11,19 +11,36 @@ export default {
     getMenu: (type) => axios.get(`menu/${type}`),
     login: (bodyFormData) => axios.post(`login`, bodyFormData),
     logout: _ => axios.post(`logout`),
-
+    
+    getSolutionDetail: (menuId, boardId) => axios.get(`solution/${this.menuId}/${this.boardId}`),
+    
     getSolutionList: (id, page) => axios.get(`solution/${id}`, {
         params: page
     }),
     getSolutionBugList: (id, page) => axios.get(`solution/${id}/bug`, {
         params: page
     }),
+    getSolutionSiteList: (id, page) => axios.get(`solution/${id}/site`, {
+        params: page
+    }),
+    getSolutionPatchList: (id, page) => axios.get(`solution/${id}/patch`, {
+        params: page
+    }),
+
     deleteSolution: (boardId) => axios.delete(`solution/${boardId}`),
     deleteSolutionBug: (boardId) => axios.delete(`solution/bug/${boardId}`),
-    getSolutionDetail: (menuId, boardId) => axios.get(`solution/${this.menuId}/${this.boardId}`),
+    deleteSolutionSite: (boardId) => axios.delete(`solution/site/${boardId}`),
+    deleteSolutionPatch: (boardId) => axios.delete(`solution/patch/${boardId}`),
+    
     addSolution: (solution) => axios.post(`solution/write`, solution),
     addSolutionBug: (solution) => axios.post(`solution/write/bug`, solution),
+    addSolutionSite: (solution) => axios.post(`solution/write/site`, solution),
+    addSolutionPatch: (solution) => axios.post(`solution/write/patch`, solution),
+    
     updateSolution: (solution) => axios.put(`solution`, solution),
+    updateSolutionBug: (solution) => axios.put(`solution/bug`, solution),
+    updateSolutionSite: (solution) => axios.put(`solution/site`, solution),
+    updateSolutionPatch: (solution) => axios.put(`solution/patch`, solution),
 
     getGroup: _ => axios.get(`group`),
     getGroupChild: (activeId, page) => axios.get(`group/child/${activeId}`, {
@@ -61,25 +78,23 @@ export default {
     getQna: (boardId) => axios.get(`/qna/answer/${boardId}` ),
     getQnaList: (id, page) => axios.get(`qna/${id}`, {params: page}),
     deleteQna: (boardId) => axios.delete(`qna/delete/${boardId}`),
-    //site
+
+    getSiteDeatil: (menuId, siteId, projectId, boardId) =>
+        axios.get(`site/${menuId}/${siteId}/${projectId}/${boardId}`),
+    updateSiteBoard: (site) => axios.put(`site/edit`, site),
+    addSiteBoard: (site) => axios.post(`site/add`, site),
+
     getSiteList: (siteId) => axios.get(`site/${siteId}`),
     addSite: (site) => axios.put(`site`, site),
     deleteSite: (siteId) => axios.delete(`site/${siteId}`),
-    
     getSiteProjectList: (menuId, siteId, page) => axios.get(`site/${menuId}/${siteId}`, {
         params: page
     }),
-    addSiteProject: (siteId, project) => axios.post(`site/${siteId}`, project),
-    editSiteProject:(project) => axios.put('site/editProject',project),
+    addSiteProject: (siteId, project) => axios.put(`site/${siteId}`, project),
     deleteSiteProject: (siteId, projectId) => axios.delete(`site/${siteId}/${projectId}`),
-    
     getSiteProjectBoardList: (menuId, siteId, projectId, page) => axios.get(`site/${menuId}/${siteId}/${projectId}`, {
         params: page
     }),
-    getSiteDeatil: (menuId, siteId, projectId, boardId) =>
-        axios.get(`site/${menuId}/${siteId}/${projectId}/${boardId}`),
-    updateSiteProjectBoard: (site) => axios.put(`site/edit`, site),
-    addSiteProjectBoard: (site) => axios.post(`site/add`, site),
     deleteSiteProjectBoard: (siteId, projectId, boardId) => axios.delete(`site/${siteId}/${projectId}/${boardId}`),
 
     getCommentList: (qid, pageNumber, size, sort) => axios.get(`comment/list/${qid}`, {
