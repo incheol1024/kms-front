@@ -38,9 +38,9 @@ export default new Router({
         { path: '/sites/:id/:siteId', component: project, props: true },
         { path: '/sites/:id/:siteId/:projectId', component: boardList, props: true },
         { path: '/solutions/write/:menuId/:boardId', component: solutionWrite, props: true },
-        { path: '/solutions/write/:menuId/bug/:boardId', component: solutionbugWrite, props: true },
-        { path: '/solutions/write/:menuId/site/:boardId', component: solutionsiteWrite, props: true },
-        { path: '/solutions/write/:menuId/manual/:boardId', component: solutionmanualWrite, props: true },
+        { path: '/solutions/write/bug/:menuId/:boardId', component: solutionbugWrite, props: true },
+        { path: '/solutions/write/site/:menuId/:boardId', component: solutionsiteWrite, props: true },
+        { path: '/solutions/write/manual/:menuId/:boardId', component: solutionmanualWrite, props: true },
         //누구냐 이거
         //{path: '/write/:id', component: Vue.component('write-component'), props: true},
         { path: '/qna/write/:name/:id', component: qnaWrite, props: true },
