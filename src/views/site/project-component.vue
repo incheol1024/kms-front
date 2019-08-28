@@ -1,59 +1,54 @@
 <template>
-  <v-layout >
-    <v-layout >
-      <v-flex xs12 >
-            <h3>Site :</h3>
-            <table-component
-              ref="table"
-              :headers="projectHeader"
-              :page-req="getProjects"
-              :allow-delete="true"
-              :delete-function="deleteProject"
-              :allowEdit="true"
-              :edit-function="editProject"
-              :click-row="getBoard"
-            ></table-component>
-            <v-btn color="primary" @click="dialog = true">Add Project</v-btn>
-            <v-btn color="primary" @click="backSite">BACK SITE</v-btn>
-            <!-- <v-btn color="primary" @click="boardCall">Board Call</v-btn> -->
+  <v-layout>
+    <v-layout>
+      <v-flex xs12>
+        <h3>Site :</h3>
+        <table-component
+          ref="table"
+          :headers="projectHeader"
+          :page-req="getProjects"
+          :allow-delete="true"
+          :delete-function="deleteProject"
+          :allowEdit="true"
+          :edit-function="editProject"
+          :click-row="getBoard"
+        ></table-component>
+        <v-btn color="primary" @click="openModal">Add Project</v-btn>
+        <v-btn color="primary" @click="backSite">BACK SITE</v-btn>
       </v-flex>
-          <v-layout>
-            <sitesdialog-component 
-              :id="Number(this.id)"
-              :siteId="Number(this.siteId)"
-              :dialog="dialog"
-              :curProject="curProject"
-              v-on:closemodal="closemodal">
-            </sitesdialog-component>
-     
-           </v-layout> 
+      <v-layout>
+        <sitesdialog-component
+          :id="Number(this.id)"
+          :siteId="Number(this.siteId)"
+          :dialog="dialog"
+          :curProject="curProject"
+          :mode="modetype"
+          v-on:closemodal="closemodal"
+        ></sitesdialog-component>
       </v-layout>
- 
+    </v-layout>
   </v-layout>
 </template>
 
 <script>
 import table from "@/components/table-component.vue";
 import sitedialog from "@/views/site/sitesdialog-component.vue";
-import * as util from "@/util"
-import {PROJECTMODEL} from "@/model"
-import {GRADE} from "@/model"
-import {STEP} from "@/model"
-import router from "@/router"
-import api from "@/apis/api"
-import { setPriority } from 'os';
+import * as util from "@/util";
+import { PROJECTMODEL } from "@/model";
+import { GRADE } from "@/model";
+import { STEP } from "@/model";
+import router from "@/router";
+import api from "@/apis/api";
+import { setPriority } from "os";
 
 export default {
-  name:"project-component",
+  name: "project-component",
   components: {
     "table-component": table,
     "sitesdialog-component": sitedialog
   },
   props: ["id", "siteId"],
-  watch: {
-
-   
-  },
+  watch: {},
   data: () => ({
     window: 0,
     curProject: util.copyObject(PROJECTMODEL),
@@ -62,9 +57,10 @@ export default {
     dialog: false,
     startDialog: false,
     endDialog: false,
+    modetype: "add",
     projectHeader: [
       { text: "siteId", value: "siteId" },
-      { text: "projectId",value:"projectId"},
+      { text: "projectId", value: "projectId" },
       { text: "프로젝트명", value: "name" },
       { text: "등급(상,중,하)", value: "grade" },
       { text: "진척현황", value: "step" },
@@ -77,13 +73,13 @@ export default {
   methods: {
     getProjects: function(page) {
       if (this.siteId === 0) return;
-        return api.getSiteProjectList(this.id, this.siteId, page)
+      return api.getSiteProjectList(this.id, this.siteId, page);
     },
 
     deleteProject: function(item) {
       if (confirm("삭제하시겠습니까?"))
-        return api.deleteSiteProject(item.siteId, item.projectId)
-        this.$refs.table.sync();
+        return api.deleteSiteProject(item.siteId, item.projectId);
+      this.$refs.table.sync();
     },
     getBoard: function(item) {
       let _this = this;
@@ -92,31 +88,23 @@ export default {
 
       router.push(`/sites/${this.id}/${this.siteId}/${item.projectId}`);
     },
-    backSite(){
-      router.go(-1)
+    backSite() {
+      router.go(-1);
     },
-    openModal(){
-      this.dialog=true;
-      this.curProject
+    openModal() {
+      this.modetype = "add";
+      this.curProject = util.copyObject(PROJECTMODEL);
+      this.dialog = true;
     },
-    closemodal(){
-     this.dialog = false;
-     this.$refs.table.sync();
+    closemodal() {
+      this.dialog = false;
+      this.$refs.table.sync();
     },
-    editProject(item){
-      console.log('edit call');
-      console.log(item);
-      this.dialog=true;
-      this.curProject = item
-      console.log('item binding')
-      console.log(this.curProject)
-      
-     
-    },
-    boardCall(){
-      router.push(`/sites/13/9/17`);
+    editProject(item) {
+      this.curProject = item;
+      this.modetype = "edit";
+      this.dialog = true;
     }
-
   }
 };
 </script>

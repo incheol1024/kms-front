@@ -43,7 +43,7 @@ export default  {
             this.buttonName = "New Save";
             this.showComment = false;
         } else {
-            console.log('ddd');
+           
             this.buttonName = "Edit";
             this.showComment = true;
             api.getSiteDeatil(this.menuId,this.siteId,this.projectId,this.boardId)
@@ -64,9 +64,9 @@ export default  {
           let fetch ;
 
           if (this.boardId !== "0")
-              fetch = api.updateSiteBoard(this.curSite)
+              fetch = api.updateSiteProjectBoard(this.curSite)
           else
-              fetch = api.addSiteBoard(this.curSite)
+              fetch = api.addSiteProjectBoard(this.curSite)
           fetch.then(response => {
           }).catch(error => console.error(error))
               .finally(() => {
