@@ -72,6 +72,7 @@ export default {
     addSiteProject: (siteId, project) => axios.post(`site/${siteId}`, project),
     editSiteProject:(project) => axios.put('site/editProject',project),
     deleteSiteProject: (siteId, projectId) => axios.delete(`site/${siteId}/${projectId}`),
+    
     getSiteProjectBoardList: (menuId, siteId, projectId, page) => axios.get(`site/${menuId}/${siteId}/${projectId}`, {
         params: page
     }),
