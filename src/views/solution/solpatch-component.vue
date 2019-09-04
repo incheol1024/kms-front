@@ -56,7 +56,7 @@ export default {
     },
     async deleteSolution(item) {
       if (confirm("p_삭제하시겠습니까?"))
-        return await api.deleteSolution(item.boardId);
+        return await api.deleteSolutionPatch(item.boardId);
     },
     clickRow(item) {
       router.push(`/solutions/write/patch/${this.id}/${item.boardId}`);

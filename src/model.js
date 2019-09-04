@@ -1,6 +1,7 @@
 export {UserModel, GroupModel, BASEPAGEMODEL, BASEPAGEREQMODEL, BASEPAGERESMODEL,
     ACEMODEL, ACLMODEL, PROJECTMODEL, SITEMODEL, BoardDto, BoardDetailDto, SolutionDto, 
-    SolutionBugDto, SiteDto,STEP,GRADE};
+    SolutionBugDto, SolutionSiteDto, SolutionPatchDto,
+    SiteDto,STEP,GRADE};
 
 const UserModel= {"id":"","name":"","type":"USER","groupId":-1,"groupName":"","password":""};
 const GroupModel = {"id":0,"name":"Root","parentId":-1,"children":[]};
@@ -56,6 +57,36 @@ const SolutionBugDto = {
     "menuId": 0,
     "manager": "ADMIN",
     "completed": "N",
+    "boardDetailDto": {
+        "boardId": 0,
+        "subject": null,
+        "userId": null,
+        "regDate": "",
+        "updDate": "",
+        "hits": 0,
+        "contents": null
+    }
+};
+const SolutionSiteDto = {
+    "boardId": 0,
+    "menuId": 0,
+    "site_id": 0,
+    "version": null,
+    "boardDetailDto": {
+        "boardId": 0,
+        "subject": null,
+        "userId": null,
+        "regDate": "",
+        "updDate": "",
+        "hits": 0,
+        "contents": null
+    }
+};
+const SolutionPatchDto = {
+    "boardId": 0,
+    "menuId": 0,
+    "importance": null,
+    "version": null,
     "boardDetailDto": {
         "boardId": 0,
         "subject": null,

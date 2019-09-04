@@ -23,7 +23,7 @@
 
 <script>
 import * as util from "@/util";
-import {SolutionDto} from "@/model"
+import {SolutionPatchDto} from "@/model"
 import api from "@/apis/api";
 import router from "@/router"
 import table from "@/components/table-component.vue";
@@ -42,7 +42,7 @@ export default {
     buttonName: "New Save",
     loading: false,
     showComment: false,
-    curSolution: util.copyObject(SolutionDto)
+    curSolution: util.copyObject(SolutionPatchDto)
   }),
   async mounted() {
     if (this.boardId === "0") {
@@ -61,11 +61,12 @@ export default {
     async save() {
       this.loading = true;
       this.curSolution.menuId = this.menuId;
+      this.curSolution.boardId = this.boardId;
       this.curSolution.boardDetailDto.boardId = this.curSolution.boardId;
       this.curSolution.boardDetailDto.contents = this.$refs.editor.getText();
       try {
-        if (this.boardId !== "0") await api.updateSolutionBug(this.curSolution);
-        else await api.addSolutionBug(this.curSolution);
+        if (this.boardId !== "0") await api.updateSolutionPatch(this.curSolution);
+        else await api.addSolutionPatch(this.curSolution);
       } catch (e) {
         ErrorBus.$emit("error",e)
       } finally {
