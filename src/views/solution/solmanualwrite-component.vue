@@ -56,6 +56,7 @@ export default {
   methods: {
     async save() {
       this.loading = true;
+      this.curSolution.boardId = this.boardId;
       this.curSolution.menuId = this.menuId;
       this.curSolution.boardDetailDto.boardId = this.curSolution.boardId;
       this.curSolution.boardDetailDto.contents = this.$refs.editor.getText();

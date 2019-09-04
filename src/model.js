@@ -1,5 +1,6 @@
 export {UserModel, GroupModel, BASEPAGEMODEL, BASEPAGEREQMODEL, BASEPAGERESMODEL,
-    ACEMODEL, ACLMODEL, PROJECTMODEL, SITEMODEL, BoardDto, BoardDetailDto, SolutionDto, SiteDto,STEP,GRADE};
+    ACEMODEL, ACLMODEL, PROJECTMODEL, SITEMODEL, BoardDto, BoardDetailDto, SolutionDto, 
+    SolutionBugDto, SiteDto,STEP,GRADE};
 
 const UserModel= {"id":"","name":"","type":"USER","groupId":-1,"groupName":"","password":""};
 const GroupModel = {"id":0,"name":"Root","parentId":-1,"children":[]};
@@ -40,6 +41,21 @@ const BoardDetailDto = {
 const SolutionDto = {
     "boardId": 0,
     "menuId": 0,
+    "boardDetailDto": {
+        "boardId": 0,
+        "subject": null,
+        "userId": null,
+        "regDate": "",
+        "updDate": "",
+        "hits": 0,
+        "contents": null
+    }
+};
+const SolutionBugDto = {
+    "boardId": 0,
+    "menuId": 0,
+    "manager": "ADMIN",
+    "completed": "N",
     "boardDetailDto": {
         "boardId": 0,
         "subject": null,
