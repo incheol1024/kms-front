@@ -124,6 +124,6 @@ export default {
         fileCount: fileCount
     }),
 
-
+    searchFts : (word) => axios.get(`/fts?word=${word}`)
 }
 
