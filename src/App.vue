@@ -10,6 +10,7 @@
         label="Search"
         @keyup.enter="submit"
         placeholder="Press Enter"
+        v-model="word"
       ></v-text-field>
       <v-btn icon @click="logout">
         <v-icon>cancel</v-icon>
@@ -46,7 +47,8 @@ export default {
     "error-component" : errorComponent
   },
   data: () => ({
-    drawer: null
+    drawer: null,
+    word : ""
   }),
   methods: {
     async logout() {
@@ -57,7 +59,7 @@ export default {
       }
     },
     submit() {
-      router.push("/search");
+      router.push(`/search/${this.word}`);
     }
   }
 };

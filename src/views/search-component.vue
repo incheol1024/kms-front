@@ -17,16 +17,22 @@
 import api from "@/apis/api"
 
 export default {
+  props : ['word'],
   data: () => ({
     searchData: []
   }),
-  async created(){
-    let response = await api.searchFts('aaa')
-    this.searchData = response.data
+  watch : {
+    word(){
+      this.search()
+    }
   },
-  methods: {
-    searchDoc() {
-      alert("와우!!");
+  created(){
+      this.search()
+  },
+  methods :{
+    async search(){
+      let response = await api.searchFts(this.word)
+      this.searchData = response.data.content
     }
   }
 };

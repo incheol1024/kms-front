@@ -33,7 +33,7 @@ export default new Router({
         { path: '/sites/:id', component: site, props: true },
         { path: '/solutions/:id', component: solution, props: true },
         { path: '/qna/:name/:id', component: qna, props: true },
-        { path: '/search', component: search },
+        { path: '/search/:word', component: search, props: true },
         { path: '/help', component: help },
         { path: '/sites/write/:menuId/:siteId/:projectId/:boardId', component: sitesWrite, props: true },
         { path: '/sites/:id/:siteId', component: project, props: true },
